@@ -1,0 +1,74 @@
+// ------------------------------------
+// Tokens > Custom Fonts
+// ------------------------------------
+
+// Gelica Font Family - Sans-serif
+// Brand font replacing Bricolage Grotesque
+// Weights: 200 (extralight) to 900 (black)
+
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/gelica-extralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/gelica-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/gelica-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/gelica-medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/gelica-semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/gelica-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/gelica-black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Cal Sans - Serif
+// Brand font replacing Crimson Pro for body text
+
+@font-face {
+  font-family: 'Cal Sans';
+  src: url('../fonts/CalSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

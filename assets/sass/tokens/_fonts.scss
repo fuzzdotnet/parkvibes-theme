@@ -2,10 +2,15 @@
 // Tokens > Fonts
 // ------------------------------------
 
-// Bricolage Grotesque
-// https://fonts.google.com/specimen/Bricolage+Grotesque
-// Loaded asynchronously in head.hbs for non-blocking performance
+// Custom Brand Fonts
+// Loaded via @font-face declarations in _custom-fonts.scss
 
-// Crimson Pro
-// https://fonts.google.com/specimen/Crimson+Pro
-// Loaded via Google Fonts for optimized delivery
+// Gelica
+// Custom sans-serif font family (replacing Bricolage Grotesque)
+// Weights: 200 (extralight) to 900 (black)
+// Used for headings and UI elements
+
+// Cal Sans
+// Custom serif font family (replacing Crimson Pro)
+// Weight: 400 (regular)
+// Used for body text and content
