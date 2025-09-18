@@ -1,0 +1,195 @@
+// ------------------------------------
+// Components > Modal Post
+// ------------------------------------
+
+@use '../mixins/mq';
+@use '../mixins/layout';
+@use '../mixins/interaction';
+
+.c-modal-post {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--motion-duration-medium) var(--motion-ease-out),
+              visibility var(--motion-duration-medium) var(--motion-ease-out);
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    // Always have the gradient, control visibility with opacity
+    background: linear-gradient(to bottom,
+      color-mix(in srgb, var(--modal-color-accent, var(--color-site-background)) 75%, white) 0%,
+      var(--modal-color-accent, var(--color-site-background)) 100%
+    );
+    opacity: 0;
+    transition: opacity var(--motion-duration-medium) var(--motion-ease-out);
+    
+    .is-active & {
+      opacity: 1;
+    }
+  }
+
+  &__container {
+    position: relative;
+    width: 90%;
+    max-width: calc(var(--line-length) * 2);
+    max-height: 95vh; // Fallback for older browsers
+    max-height: 95dvh; // Dynamic viewport height - adjusts when Safari toolbar hides/shows
+    background-color: var(--color-site-background);
+    border-radius: var(--border-radius-default);
+    overflow: hidden;
+    box-shadow: 0 var(--space-100) var(--space-200) color-mix(in srgb, var(--color-site-text) 15%, transparent);
+    
+    // Enable container queries for full-width elements
+    container-type: inline-size;
+    container-name: modal-container;
+    
+    // Hide shadow when parent modal has accent color (--modal-color-accent is set)
+    [style*="--modal-color-accent"] & {
+      box-shadow: none;
+      // border: var(--border-width-default) solid var(--color-site-text);
+    }
+
+    opacity: 0;
+    
+    .is-active & {
+      opacity: 1;
+      transition: opacity var(--motion-duration-medium) var(--motion-ease-out) 0.15s;
+    }
+
+    // Override wide elements inside modal to respect modal boundaries
+    .kg-width-wide {
+      @include layout.kg-width-wide-modal();
+    }
+
+    .kg-content-wide .kg-header-card-content {
+      @include mq.mq($from: desktop) {  
+        @include layout.kg-width-wide-modal();
+      }
+    }
+
+    // Override full-width elements inside modal to respect modal boundaries
+    .kg-width-full {
+      @include layout.kg-width-full-modal();
+    }
+  }
+
+  &__close {
+    z-index: 10;
+    position: absolute;
+    right: var(--space-100);
+    top: var(--space-100);
+    
+    @include mq.mq($from: desktop) {
+      right: var(--space-200);
+      top: var(--space-200);
+    }
+  }
+
+  &__content {
+    position: relative;
+    overflow-y: auto;
+    max-height: 95vh; // Fallback for older browsers
+    max-height: 95dvh; // Dynamic viewport height - adjusts when Safari toolbar hides/shows
+    opacity: 0;
+    
+    .is-active & {
+      opacity: 1;
+      transition: opacity var(--motion-duration-medium) var(--motion-ease) 0.25s;
+    }
+    
+    // Add loading state
+    &.is-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: none;
+      
+      &:after {
+        content: '';
+        display: block;
+        width: var(--space-500);
+        height: var(--space-500);
+        border-width: var(--space-025);
+        border-style: var(--border-style-default);
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: var(--color-site-text);
+        border-left-color: var(--color-site-text);
+        border-radius: var(--border-radius-circle);
+        animation: spin var(--motion-duration-slow) infinite linear;
+      }
+    }
+  }
+
+  &__scroll-indicator {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--color-site-background) 100%
+    );
+    border-radius: 0;
+    bottom: 0;
+    height: var(--space-500);
+    left: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+    z-index: 15;
+    
+    &.is-visible {
+      opacity: 1;
+    }
+  }
+
+  &__error {
+    padding: var(--space-400);
+  }
+  
+  // Add full link
+  &__full-link {
+    // Hide by default in regular posts
+    display: none;
+    
+    // Only show in modal context
+    .c-modal-post & {
+      display: block;
+      text-align: center;
+      
+      @include mq.mq($from: desktop) {
+        position: absolute;
+        right: var(--space-800);
+        top: calc(var(--space-100) * 2);
+      }
+    }
+  }
+}
+
+// Add styles for when modal is open to prevent scrolling
+body.modal-open {
+  overflow: hidden;
+}

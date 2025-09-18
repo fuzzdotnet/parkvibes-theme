@@ -1,0 +1,26 @@
+{{!-- Blocks > Cards > Testimonial --}}
+
+<div class="c-card-testimonial
+  {{> utilities/general }} {{ post_class }}"
+  {{> utilities/inline-card }}>
+
+  <div class="c-card-testimonial__content">{{ content }}</div>
+
+  <div class="c-card-testimonial__meta">
+    {{#if feature_image}}
+      <figure class="c-card-testimonial__figure c-card-testimonial__image-wrapper">
+        <img src="{{ img_url feature_image size='profile-image' format='webp' }}" class="c-card-testimonial__image" alt="" decoding="async" width="64" height="64">
+      </figure>
+    {{/if}}
+    <div class="c-card-testimonial__author">
+      <h3 class="c-card-testimonial__author-name">
+        {{#if canonical_url}}
+          <a href="{{ canonical_url }}" class="u-link">{{ title }}</a>
+        {{else}}
+          {{ title }}
+        {{/if}}
+      </h3>
+      {{#if custom_excerpt}}<p class="c-card-testimonial__author-title">{{ custom_excerpt }}</p>{{/if}}
+    </div>
+  </div>
+</div>

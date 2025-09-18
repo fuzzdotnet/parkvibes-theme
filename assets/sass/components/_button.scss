@@ -1,0 +1,216 @@
+// ------------------------------------
+// Components > Button
+// ------------------------------------
+// Examples:
+// <button class="c-btn">Primary</button>
+// <button class="c-btn c-btn--neutral">Neutral</button>
+// <button class="c-btn c-btn--outline">Outline</button>
+// <button class="c-btn c-btn--neutral c-btn--outline">Neutral Outline</button>
+// <button class="c-btn c-btn--small">Small</button>
+// <button class="c-btn c-btn--icon">×</button>
+// <button class="c-btn c-btn--icon-leading"><svg>...</svg><span class="c-btn__label">Share</span></button>
+// <button class="c-btn c-btn--icon-leading-expand"><svg>...</svg><span class="c-btn__label">Subscribe</span></button>
+// <button class="c-btn c-btn--loading">Loading...</button>
+//
+// ------------------------------------
+
+@use '../mixins/typography';
+@use '../mixins/interaction';
+
+// Button Typography Mixins
+@mixin btn-typography-base {
+  @include typography.font($font-family: sans-serif, $font-size: 100, $font-weight: medium, $letter-spacing: tiny);
+}
+
+@mixin btn-typography-small {
+  @include typography.font($font-size: '087', $font-weight: medium, $letter-spacing: tiny);
+}
+
+@mixin btn-typography-label {
+  @include typography.font($font-size: '087', $font-weight: medium, $uppercase: true, $letter-spacing: tiny);
+}
+
+.c-btn {
+  --outline-focus-offset: calc(var(--space-050) * -1);
+  --btn-padding: var(--space-150) var(--space-300);
+  --btn-padding-small: var(--space-100) var(--space-200);
+  
+  // Button color sources - define both colors that make up the button
+  --btn-accent-color: var(--color-site-accent);
+  --btn-contrast-color: var(--color-site-background);
+  
+  // Visual properties use the color sources
+  --btn-background: var(--btn-accent-color);
+  --btn-text: var(--btn-contrast-color);
+  --btn-border: var(--btn-accent-color);
+
+  @include btn-typography-base;
+  text-align: center;
+  text-transform: initial;
+
+  height: auto;
+  width: fit-content;
+  min-width: fit-content;
+  padding: var(--btn-padding);
+  border: var(--border-width-default) solid transparent;
+  border-radius: var(--border-radius-pill);
+
+  color: var(--btn-text);
+  background-color: var(--btn-background);
+  border-color: var(--btn-border);
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: background-color var(--motion-duration-fast) var(--motion-ease),
+              color var(--motion-duration-fast) var(--motion-ease),
+              opacity var(--motion-duration-fast) var(--motion-ease),
+              transform 150ms var(--motion-ease);
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &.js-contrast {
+    // Use contrasted text if available, otherwise fall back to default contrast color
+    --btn-text: var(--color-on-accent-btn-text, var(--btn-contrast-color));
+  }
+
+  @include interaction.attention() {
+    opacity: 0.9;
+  }
+
+  &--neutral {
+    --btn-accent-color: var(--color-site-text);
+  }
+
+  &--outline {
+    // Swap the visual properties to use opposite color sources
+    --btn-background: var(--btn-contrast-color);
+    --btn-text: var(--btn-accent-color);
+    --btn-border: var(--btn-accent-color);
+    
+    @include interaction.attention() {
+      --btn-background: var(--btn-accent-color);
+      --btn-text: var(--btn-contrast-color);
+      --btn-border: var(--btn-accent-color);
+      opacity: 1;
+    }
+  }
+
+  &--small {
+    padding: var(--btn-padding-small);
+    @include btn-typography-small;
+    display: inline-flex;
+  }
+
+  &--icon {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-500);
+    height: var(--space-500);
+    border-radius: var(--border-radius-pill);
+
+    svg {
+      flex-shrink: 0;
+      width: var(--space-250);
+      height: var(--space-250);
+    }
+  }
+
+  &--icon-leading {
+    height: auto;
+    padding: var(--btn-padding-small);
+    gap: var(--space-100);
+  }
+  
+  &--icon-leading-expand {
+    overflow: hidden;
+    white-space: nowrap;
+    transition: padding var(--motion-duration-slow) var(--motion-ease);
+
+    .c-btn__label {
+      display: inline-block;
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-width var(--motion-duration-slow) var(--motion-ease),
+                  opacity var(--motion-duration-slow) var(--motion-ease),
+                  margin-left var(--motion-duration-slow) var(--motion-ease);
+      margin-left: 0;
+    }
+
+    &:hover,
+    &:focus-visible {
+      padding: var(--btn-padding-small);
+      
+      .c-btn__label {
+        max-width: 100px; // Enough for "Subscribe"
+        opacity: 1;
+        margin-left: var(--space-100);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+      
+      .c-btn__label {
+        transition: opacity var(--motion-duration-fast) var(--motion-ease);
+      }
+    }
+  }
+
+  &__label {
+    @include btn-typography-label;
+  }
+
+  &--disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+
+  &--loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:after {
+      content: '';
+      display: block;
+      height: var(--space-200);
+      width: var(--space-200);
+      margin-left: var(--space-100);
+      border-width: var(--space-025);
+      border-style: var(--border-style-default);
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: var(--btn-text);
+      border-left-color: var(--btn-text);
+      border-radius: var(--border-radius-circle);
+      animation: spin var(--motion-duration-slow) infinite linear;
+    }
+
+    &.c-btn--outline:after {
+      border-bottom-color: var(--btn-color);
+      border-left-color: var(--btn-color);
+    }
+
+    @include interaction.attention() {
+      &:after {
+        border-bottom-color: var(--btn-text);
+        border-left-color: var(--btn-text);
+      }
+    }
+  }
+}
+
+// ------------------------------------
+// Global overrides for Ghost buttons with js-contrast
+// Ensures computed button text color wins over inline styles across contexts
+.js-contrast.kg-btn,
+.js-contrast.kg-btn-accent,
+.js-contrast.kg-signup-card-button,
+.js-contrast.kg-header-card-button {
+  color: var(--btn-text) !important;
+}

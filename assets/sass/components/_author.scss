@@ -1,0 +1,39 @@
+// ------------------------------------
+// Components > Author
+// ------------------------------------
+
+@use '../mixins/typography';
+
+.c-author-head {
+  padding: var(--space-1200) var(--grid-margin);
+
+  &__inner {
+    margin: 0 auto;
+    text-align: center;
+    max-width: var(--line-length);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--content-flow) / 4);
+  }
+
+  &__media {
+    width: var(--space-1200-fixed);
+    height: var(--space-1200-fixed);
+    border-radius: var(--border-radius-circle);
+    background-color: color-mix(in srgb, var(--color-site-text) 5%, transparent);
+    box-shadow: 0 var(--space-100) var(--space-200) color-mix(in srgb, var(--color-site-text) 15%, transparent);
+  }
+
+  &__image {
+    object-fit: cover;
+    width: var(--space-1200-fixed);
+    height: var(--space-1200-fixed);
+    min-width: var(--space-1200-fixed);
+    border-radius: var(--border-radius-circle);
+    background-color: color-mix(in srgb, var(--color-site-text) 5%, transparent);
+  }
+
+  &__links {
+    @include typography.font($font-size: '087', $line-height: '125', $uppercase: true, $letter-spacing: tiny);
+  }
+}

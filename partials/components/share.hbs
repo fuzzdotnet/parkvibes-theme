@@ -1,0 +1,84 @@
+<button class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading" data-share-trigger aria-label='{{t "Share"}}'>
+  {{> icons/share }}
+  <span class="c-btn__label">{{t "Share"}}</span>
+</button>
+
+<!-- Apple-style Share Sheet -->
+<div class="c-share" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="share-title" tabindex="-1">
+  <div class="c-share__backdrop" data-share-backdrop></div>
+  <div class="c-share__container">
+    <div class="c-share__header">
+      <div class="c-share__handle"></div>
+      <h3 id="share-title" class="c-share__title">{{t "Share"}}</h3>
+    </div>
+    
+    <div class="c-share__content">
+      <!-- Social Media Sharing -->
+      <div class="c-share__section">
+        <div class="c-share__grid">
+          <div class="c-share__item">
+            <a class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading" 
+               href='https://www.facebook.com/sharer/sharer.php?u={{ url absolute="true" }}'
+               onclick='window.open(this.href, "facebook-share", "width=580, height=296"); return false;'
+               data-platform='facebook'>
+              {{> icons/facebook }}
+              <span class="c-btn__label">Facebook</span>
+            </a>
+          </div>
+          
+          <div class="c-share__item">
+            <a class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading"
+               href='https://twitter.com/share?text={{ encode title }}&amp;url={{ url absolute="true" }}'
+               onclick='window.open(this.href, "twitter-share", "width=550, height=235"); return false;'
+               data-platform='twitter'>
+              {{> icons/x }}
+              <span class="c-btn__label">𝕏</span>
+            </a>
+          </div>
+          
+          <div class="c-share__item">
+            <a class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading"
+               href='https://www.linkedin.com/shareArticle?mini=true&url={{ url absolute="true" }}&title={{ encode title }}'
+               onclick='window.open(this.href, "linkedin-share", "width=580, height=296"); return false;'
+               data-platform='linkedin'>
+              {{> icons/linkedin }}
+              <span class="c-btn__label">LinkedIn</span>
+            </a>
+          </div>
+          
+          <div class="c-share__item">
+            <a class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading"
+               href='https://www.pinterest.com/pin/create/button/?url={{ url absolute="true" }}{{#if feature_image}}&amp;media={{ feature_image }}{{/if}}&amp;description={{ encode title }}'
+               onclick='window.open(this.href, "pinterest-share", "width=580, height=296"); return false;'
+               data-platform='pinterest'>
+              {{> icons/pinterest }}
+              <span class="c-btn__label">Pinterest</span>
+            </a>
+          </div>
+          
+          <div class="c-share__item">
+            <a class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading"
+               href='https://wa.me/?text={{ encode title }}%20{{ encode (url absolute="true") }}'
+               data-platform='whatsapp'>
+              {{> icons/whatsapp }}
+              <span class="c-btn__label">WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Actions -->
+      <div class="c-share__section">
+        <div class="c-share__actions">
+          <button class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading" data-share-copy>
+            <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+              <rect x='9' y='9' width='13' height='13' rx='2' ry='2'></rect>
+              <path d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'></path>
+            </svg>
+            <span class="c-btn__label">{{t "Copy Link"}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

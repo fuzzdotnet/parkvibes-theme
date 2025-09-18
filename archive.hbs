@@ -1,0 +1,76 @@
+{{!< default}}
+
+{{#contentFor 'title'}}
+  {{#get "pages" filter="slug:archive" limit="1" as |archivePage|}}
+    {{#if archivePage}}
+      {{ archivePage.[0].title }}
+    {{else}}
+      {{t "Archive"}}
+    {{/if}}
+  {{/get}}
+{{/contentFor}}
+
+<header class="c-page-head">
+  <div class="c-page-head__inner u-gap-none">
+    {{!-- Pull title/description from a static page with slug `archive` if it exists --}}
+    {{#get "pages" filter="slug:archive" limit="1" as |archivePage|}}
+      {{#if archivePage}}
+        <h1 class="u-font-heading">{{ archivePage.[0].title }}</h1>
+        {{#if archivePage.[0].custom_excerpt}}
+          <p class="u-font-subHeading">{{ archivePage.[0].custom_excerpt }}</p>
+        {{/if}}
+      {{else}}
+        <h1 class="u-font-heading">{{t "Archive"}}</h1>
+      {{/if}}
+    {{/get}}
+  </div>
+</header>
+
+<div class="o-grid">
+  <div class="c-archive-wrap">
+    {{#if posts}}
+      <table class="c-archive-table" id="archive-table">
+          <thead>
+            <tr class="c-archive-table__row">
+              <th class="c-archive-table__header c-archive-table__header--sortable" data-sort="title">{{t "Title" }}</th>
+              <th class="c-archive-table__header c-archive-table__header--sortable" data-sort="date">{{t "Date" }}</th>
+              <th class="c-archive-table__header c-archive-table__header--sortable" data-sort="reading-time">{{t "Reading Time" }}</th>
+              <th class="c-archive-table__header">{{t "Tags" }}</th>
+              <th class="c-archive-table__header"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#foreach posts}}
+              <tr class="c-archive-table__row">
+                <td class="c-archive-table__cell"><a href="{{ url }}" class="c-archive-table__title-link">{{ title }}</a></td>
+                <td class="c-archive-table__cell" data-date="{{date format='YYYY-MM-DD'}}">{{> meta/timestamp component="archive" }}</td>
+                <td class="c-archive-table__cell" data-reading-time="{{reading_time}}">{{> meta/reading-time component="archive" }}</td>
+                <td class="c-archive-table__cell">
+                  {{#if tags}}
+                    {{tags separator=" • " prefix="<span class=\"c-archive-table__tags\">" suffix="</span>"}}
+                  {{/if}}
+                </td>
+                <td class="c-archive-table__cell c-archive-table__cell--image">
+                  {{#if feature_image}}
+                    <a href="{{ url }}" tabindex="-1">
+                      <div class="c-archive-table__image-wrapper">
+                        <img class="c-archive-table__image" 
+                             src="{{ img_url feature_image size='feature-image-xs' format='webp' }}"
+                             alt="{{ title }}" 
+                             width="64" 
+                             height="64" 
+                             loading="lazy">
+                      </div>
+                    </a>
+                  {{/if}}
+                </td>
+              </tr>
+            {{/foreach}}
+          </tbody>
+      </table>
+      {{ pagination }}
+    {{else}}
+      <p>{{t "No posts found."}}</p>
+    {{/if}}
+  </div>
+</div>

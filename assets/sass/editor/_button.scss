@@ -1,0 +1,22 @@
+// ------------------------------------
+// Editor > Button Card
+// ------------------------------------
+
+@use '../components/button';
+
+.kg-button-card {
+  display: flex;
+
+  &.kg-align-center {
+    justify-content: center;
+  }
+
+  &.kg-align-left {
+    justify-content: start;
+  }
+}
+
+.kg-btn,
+.kg-btn-accent {
+  @extend .c-btn;
+}

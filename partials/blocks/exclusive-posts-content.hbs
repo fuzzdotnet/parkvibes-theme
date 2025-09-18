@@ -1,0 +1,20 @@
+{{!-- Blocks > Exclusive Posts Content (shared partial) --}}
+
+{{#if posts}}
+<section class="c-block c-block--exclusive-posts
+  {{> utilities/general }} {{ post_class }}"
+  {{> utilities/inline-block }}>
+
+  {{> blocks/block-heading staticTitle=(t "Exclusive Posts") size="small"}}
+
+  <div class="o-grid">
+    <div class="c-exclusive-posts-rolodex">
+      {{#foreach posts}}
+        <div class="c-exclusive-posts-rolodex__item">
+          {{> components/card-post modifierClass="c-card-post--members c-card-post--wide" }}
+        </div>
+      {{/foreach}}
+    </div>
+  </div>
+</section>
+{{/if}}

@@ -1,0 +1,79 @@
+// ------------------------------------
+// Objects > Grid
+// ------------------------------------
+
+@use '../mixins/mq';
+
+.o-grid {
+  margin: auto;
+  display: grid;
+  gap: var(--grid-gap);
+  max-width: var(--grid-width);
+  padding: 0 var(--grid-margin);
+
+  @include mq.mq($from: desktop) {
+    --grid-gap: var(--space-400);
+  }
+  
+  .o-grid {
+    padding: 0;
+  }
+
+  &--gap-small {
+    --grid-gap: var(--space-100);
+  }
+
+  &--50 {
+    @include mq.mq($from: tablet) {
+      width: 50%;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  &--50-d {
+    @include mq.mq($from: desktop) {
+      width: 50%;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  &--75 {
+    @include mq.mq($from: tablet) {
+      width: 75%;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  &--75-w {
+    @include mq.mq($from: wide) {
+      width: 75%;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  &--2-columns {
+    @include mq.mq($from: tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &--3-columns {
+    @include mq.mq($from: tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include mq.mq($from: desktop) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &--4-columns {
+    @include mq.mq($from: tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include mq.mq($from: desktop) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}

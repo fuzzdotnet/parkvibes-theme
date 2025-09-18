@@ -1,0 +1,27 @@
+{{!-- Blocks > Banner --}}
+
+{{#get "pages" filter="tag:hash-banner" include="tags" limit="1" order="published_at desc" as |pages|}}
+  {{#foreach pages}}
+    <section class="c-block c-block--banner c-block--banner-animated
+      {{#match @custom.banner_text_size 'Extra Large'}} c-block--banner-text-extra-large {{/match}}
+      {{#match @custom.banner_text_size 'Large (Default)'}} c-block--banner-text-large {{/match}}
+      {{#match @custom.banner_text_size 'Medium'}} c-block--banner-text-medium {{/match}}
+      {{#match @custom.banner_text_size 'Small'}} c-block--banner-text-small {{/match}}
+      {{#match @custom.banner_text_alignment 'Center'}} c-block--banner-text-center {{/match}}
+      {{#match @custom.banner_text_alignment 'Left (Default)'}} c-block--banner-text-left {{/match}}
+      {{#match @custom.banner_text_layout 'Inline'}} c-block--banner-inline {{/match}}
+      {{#match @custom.banner_text_layout 'Stacked (Default)'}} c-block--banner-stacked {{/match}}
+      {{> utilities/text }}
+      {{> utilities/general }} {{ post_class }}"
+      {{> utilities/inline-block }}
+      {{> utilities/id }}>
+      
+      <div class="o-grid">
+        <div class="c-block--banner__content">
+          {{ content }}
+        </div>
+        <p class="c-block--banner__excerpt u-hidden">{{ excerpt }}</p>
+      </div>
+    </section>
+  {{/foreach}}
+{{/get}}

@@ -1,0 +1,26 @@
+// ------------------------------------
+// Tokens > Motion
+// ------------------------------------
+
+:root {
+  // Duration variables
+  --motion-duration-fast: .25s;
+  --motion-duration-medium: .3s;
+  --motion-duration-slow: .5s;
+
+  // Easing functions
+  --motion-ease: ease;
+  --motion-ease-in: ease-in;
+  --motion-ease-out: ease-out;
+  --motion-ease-in-out: ease-in-out;
+
+  // Common transitions
+  --motion-transition-standard: var(--motion-duration-medium) var(--motion-ease);
+}
+
+// Keyframe Animations
+
+@keyframes spin {
+  0%   { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}

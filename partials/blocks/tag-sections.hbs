@@ -1,0 +1,23 @@
+{{!-- Blocks > Tag Sections --}}
+
+{{#match @custom.tag_sections "All Tags (Default)"}}
+  {{#get "tags" limit="50" as |tags|}}
+    {{#if tags}}
+      {{#foreach tags}}
+        {{> blocks/tag-section}}
+      {{/foreach}}
+    {{/if}}
+  {{/get}}
+{{/match}}
+
+{{#match @custom.tag_sections "Specific Tags"}}
+  {{#if @custom.tag_sections_slugs}}
+    {{#get "tags" filter="slug:[{{@custom.tag_sections_slugs}}]" as |tags|}}
+      {{#if tags}}
+        {{#foreach tags}}
+          {{> blocks/tag-section}}
+        {{/foreach}}
+      {{/if}}
+    {{/get}}
+  {{/if}}
+{{/match}}

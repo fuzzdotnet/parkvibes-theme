@@ -1,0 +1,17 @@
+// ------------------------------------
+// Editor > Video Card
+// ------------------------------------
+
+@use '../mixins/typography';
+
+.kg-video-container {
+  // Fallback 16:9 aspect ratio for modal view where Ghost's inline styles aren't applied
+  // Post view uses Ghost's dynamic inline padding-bottom which overrides this CSS
+  padding-bottom: 56.25%;
+  border-radius: var(--border-radius-default);
+  background-color: color-mix(in srgb, var(--color-site-text) 5%, transparent);
+}
+
+.kg-video-player-container .kg-video-player * {
+  @include typography.font($font-size: 100, $font-weight: regular);
+}

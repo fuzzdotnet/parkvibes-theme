@@ -1,0 +1,9 @@
+// ------------------------------------
+// Blocks > Featured Posts
+// ------------------------------------
+
+.c-block--featured-posts {
+  .c-featured-posts-grid {
+    counter-reset: featured-post-counter;
+  }
+}

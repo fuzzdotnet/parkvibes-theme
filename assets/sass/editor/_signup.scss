@@ -1,0 +1,298 @@
+// ------------------------------------
+// Editor > Signup Card
+// ------------------------------------
+
+// Ghost Signup Card (legacy name for Header Card)
+// Docs: https://ghost.org/docs/themes/content/#signup-card
+// Source: https://github.com/TryGhost/Ghost/blob/main/ghost/core/core/frontend/src/cards/css/signup.css
+
+// Layout Variants:
+// - kg-width-regular: Default width
+// - kg-width-wide: Wider container
+// - kg-width-full: Full viewport width
+// - kg-layout-split: Side-by-side image and text
+// - kg-content-wide: Contained image (not full height)
+// - kg-swapped: Image on right (split layout only)
+// - kg-align-center: Centered text alignment
+// - kg-style-accent: Accent color background
+// - kg-style-image: Background image behind text
+
+@use '../mixins/mq';
+@use '../mixins/layout';
+@use '../mixins/typography';
+@use '../components/button';
+
+.kg-signup-card {
+  position: relative;
+  
+  &:not(.kg-width-full) {
+    overflow: hidden;
+    border-radius: var(--border-radius-default);
+  }
+  
+  &.kg-style-accent {
+    background-color: var(--color-site-accent);
+  }
+}
+
+// Content
+
+.kg-signup-card-content {
+  margin: auto;
+}
+
+.kg-content-wide .kg-signup-card-content {
+  @include mq.mq($from: desktop) {
+    @include layout.kg-width-wide();
+  }
+}
+
+.kg-layout-split .kg-signup-card-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  
+  @include mq.mq($from: desktop) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.kg-layout-split.kg-content-wide .kg-signup-card-content {
+  align-items: center;
+}
+
+// Text
+
+.kg-signup-card-text {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-300);
+
+  @include mq.mq($from: tablet) {
+    padding: var(--block-space-medium);
+  }
+}
+
+// Center alignment
+.kg-signup-card-text.kg-align-center {
+  align-items: center;
+  text-align: center;
+}
+
+// Swapped layout (image on right)
+.kg-swapped .kg-signup-card-text {
+  grid-row: 1;
+}
+
+// Wide width
+// .kg-width-wide .kg-signup-card-text {}
+
+// Full width (no split)
+.kg-width-full:not(.kg-layout-split) .kg-signup-card-text {
+  @include mq.mq($from: desktop) {
+    padding: var(--block-space-large);
+  }
+}
+
+// Full width with split layout
+// .kg-width-full.kg-layout-split .kg-signup-card-text {}
+
+// Content-wide split
+// .kg-width-full.kg-layout-split.kg-content-wide .kg-signup-card-text {}
+
+// Content-wide split not swapped
+.kg-width-full.kg-layout-split.kg-content-wide:not(.kg-swapped) .kg-signup-card-text {
+  @include mq.mq($from: desktop) {
+    padding-left: var(--block-space-medium);
+    padding-right: var(--block-space-small);
+  }
+}
+
+// Content-wide split swapped
+.kg-width-full.kg-layout-split.kg-content-wide.kg-swapped .kg-signup-card-text {
+  @include mq.mq($from: desktop) {
+    padding-left: var(--block-space-small);
+    padding-right: var(--block-space-medium);
+  }
+}
+
+// Images
+
+.kg-signup-card > picture > .kg-signup-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  background-color: var(--color-site-background);
+}
+
+// Split layout base image styles
+.kg-layout-split .kg-signup-card-image {
+  width: 100%;
+  margin: auto;
+}
+
+// Split layout full-height image (not content-wide)
+.kg-layout-split:not(.kg-content-wide) .kg-signup-card-image {
+  @include mq.mq($from: desktop) {
+    height: 0;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+// Split layout content-wide image
+.kg-layout-split.kg-content-wide .kg-signup-card-image {
+  @include mq.mq($from: desktop) {
+    width: fit-content;
+    object-fit: contain;
+    aspect-ratio: var(--ratio-1);
+  }
+}
+
+// Background image overlay
+.kg-signup-card > picture {
+  &:before {
+    position: absolute;
+    content: '';
+    inset: 0;
+    z-index: 1;
+    background-color: var(--color-background-transparent);
+  }
+  
+  // Ensure text content is above overlay
+  + .kg-signup-card-content {
+    z-index: 2;
+    position: relative;
+  }
+}
+
+// Typography
+
+.kg-signup-card-heading {
+  font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+}
+
+.kg-width-regular .kg-signup-card-heading {
+  @include typography.responsive-font-size-250();
+}
+
+.kg-width-wide .kg-signup-card-heading {
+  @include typography.responsive-font-size-300();
+}
+
+.kg-width-full .kg-signup-card-heading {
+  @include typography.responsive-font-size-350();
+}
+
+.kg-signup-card-subheading {
+  @include typography.font($text-wrap: balance);
+}
+
+.kg-width-regular .kg-signup-card-subheading {
+  @include typography.responsive-font-size-125();
+}
+
+.kg-width-wide .kg-signup-card-subheading {
+  @include typography.responsive-font-size-150();
+}
+
+.kg-width-full .kg-signup-card-subheading {
+  @include typography.responsive-font-size-150();
+}
+
+// Subscribe form
+
+.kg-signup-card-form {
+  margin-top: var(--space-200);
+
+  .kg-align-center & {
+    align-items: center;
+  }
+}
+
+.kg-signup-card-fields {
+  display: flex;
+  width: 100%;
+  padding: var(--space-025);
+  border-radius: var(--border-radius-pill);
+  background-color: var(--color-site-background);
+}
+
+.kg-signup-card:not(.kg-layout-split) .kg-signup-card-fields {
+  @include mq.mq($from: desktop) {
+    max-width: calc(var(--space-3200) * 2);
+  }
+}
+
+.kg-signup-card-button {
+  @extend .c-btn;
+
+  border: 0;
+  position: relative;
+
+  &.kg-style-accent {
+    background-color: var(--color-site-accent);
+  }
+}
+
+// Subscribe form states
+
+.kg-signup-card-success,
+.kg-signup-card-error {
+  display: none;
+}
+
+.kg-signup-card-form.success {
+  .kg-signup-card-fields {
+    display: none;
+  }
+
+  .kg-signup-card-success {
+    display: block;
+  }
+}
+
+.kg-signup-card-form.error {
+  .kg-signup-card-error {
+    display: block;
+  }
+}
+
+.kg-signup-card-button-loading {
+  display: none;
+  position: absolute;
+  inset: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.kg-signup-card-form.loading {
+  .kg-signup-card-button-default {
+    color: transparent;
+  }
+
+  .kg-signup-card-button-loading {
+    display: flex;
+  }
+}
+
+.kg-signup-card-disclaimer,
+.kg-signup-card-error,
+.kg-signup-card-success {
+  @include typography.font($font-family: sans-serif, $font-size: '100');
+  margin-top: var(--space-100);
+}
+
+.kg-signup-card-form.success,
+.kg-signup-card-form.error {
+  + .kg-signup-card-disclaimer {
+    visibility: hidden;
+  }
+}

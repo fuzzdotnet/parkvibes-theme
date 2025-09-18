@@ -1,0 +1,25 @@
+{{!-- Built-in Ghost social links --}}
+{{#if @site.twitter}}
+  <li>
+    <a href="{{ social_url type="twitter" }}" class="c-footer-social__link" target="_blank" rel="noopener noreferrer">Twitter</a>
+  </li>
+{{/if}}
+
+{{#if @site.facebook}}
+  <li>
+    <a href="{{ social_url type="facebook" }}" class="c-footer-social__link" target="_blank" rel="noopener noreferrer">Facebook</a>
+  </li>
+{{/if}}
+
+{{!-- Custom social links --}}
+{{#if @custom.youtube_url}}
+  <li>
+    <a href="{{ @custom.youtube_url }}" class="c-footer-social__link" target="_blank" rel="noopener noreferrer">YouTube</a>
+  </li>
+{{/if}}
+
+{{#if @custom.instagram_url}}
+  <li>
+    <a href="{{ @custom.instagram_url }}" class="c-footer-social__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </li>
+{{/if}}

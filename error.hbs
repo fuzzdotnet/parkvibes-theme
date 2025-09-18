@@ -1,0 +1,20 @@
+{{!< default}}
+
+{{#contentFor "title"}}{{t "Page Not Found" }}{{/contentFor}}
+
+<header class="c-page-head">
+  <div class="c-page-head__inner u-gap-none">
+    <h1 class="u-font-heading">404</h1>
+    <p class="u-font-subHeading">{{t "Page Not Found" }}</p>
+  </div>
+</header>
+
+{{#get "posts" include="tags" limit="6"}}
+  {{#if posts}}
+    <div class="o-grid o-grid--3-columns">
+      {{#foreach posts}}
+        {{> components/card-post }}
+      {{/foreach}}
+    </div>
+  {{/if}}
+{{/get}}

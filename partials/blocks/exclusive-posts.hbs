@@ -1,0 +1,27 @@
+{{!-- Blocks > Exclusive Posts --}}
+
+{{#if @site.members_enabled}}
+  {{#match @custom.exclusive_posts "Members only (Default)"}}
+    {{#get "posts" filter="visibility:members" include="tags" limit="3"}}
+      {{> "blocks/exclusive-posts-content"}}
+    {{/get}}
+  {{/match}}
+
+  {{#match @custom.exclusive_posts "Paid-members only"}}
+    {{#get "posts" filter="visibility:paid" include="tags" limit="3"}}
+      {{> "blocks/exclusive-posts-content"}}
+    {{/get}}
+  {{/match}}
+
+  {{#match @custom.exclusive_posts "Specific tier(s)"}}
+    {{#get "posts" filter="visibility:tiers" include="tags" limit="3"}}
+      {{> "blocks/exclusive-posts-content"}}
+    {{/get}}
+  {{/match}}
+
+  {{#match @custom.exclusive_posts "All (members + paid + tiers)"}}
+    {{#get "posts" filter="visibility:members,visibility:tiers,visibility:paid" include="tags" limit="6"}}
+      {{> "blocks/exclusive-posts-content"}}
+    {{/get}}
+  {{/match}}
+{{/if}}

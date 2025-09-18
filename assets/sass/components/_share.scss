@@ -1,0 +1,119 @@
+// ------------------------------------
+// Components > Share
+// ------------------------------------
+
+@use '../mixins/mq';
+@use '../mixins/typography';
+@use '../mixins/interaction';
+
+.c-share {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  
+  @media (prefers-reduced-motion: no-preference) {
+    transition: opacity var(--motion-duration-medium) var(--motion-ease),
+                visibility var(--motion-duration-medium) var(--motion-ease);
+  }
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: color-mix(in srgb, black 40%, transparent);
+    backdrop-filter: blur(var(--space-050));
+    cursor: pointer;
+  }
+
+  &__container {
+    position: relative;
+    width: 100%;
+    max-width: calc(var(--space-3200) * 2);
+    margin: 0 var(--space-200);
+    background-color: var(--color-site-background);
+    border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
+    box-shadow: var(--shadow-modal);
+    transform: translateY(100%);
+    
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform var(--motion-duration-medium) var(--motion-ease-out);
+    }
+
+    .c-share.is-active & {
+      transform: translateY(0);
+    }
+
+    @include mq.mq($from: tablet) {
+      margin: 0 auto var(--space-400);
+      border-radius: var(--border-radius-medium);
+    }
+  }
+
+  &__header {
+    padding: var(--space-200) var(--space-200) var(--space-100);
+    text-align: center;
+    border-bottom: var(--border-width-default) solid color-mix(in srgb, var(--color-site-text) 10%, transparent);
+  }
+
+  &__handle {
+    width: var(--space-500);
+    height: var(--space-050);
+    background-color: color-mix(in srgb, var(--color-site-text) 30%, transparent);
+    border-radius: var(--border-radius-pill);
+    margin: 0 auto var(--space-200);
+  }
+
+  &__title {
+    @include typography.font($font-size: 150, $font-weight: medium);
+  }
+
+  &__content {
+    padding: var(--space-200);
+  }
+
+  &__section {
+    &:not(:last-child) {
+      margin-bottom: var(--space-200);
+      padding-bottom: var(--space-200);
+      border-bottom: var(--border-width-default) solid color-mix(in srgb, var(--color-site-text) 10%, transparent);
+    }
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-200);
+    justify-content: center;
+  }
+
+  &__item {
+    flex: 0 0 auto;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-200);
+    align-items: stretch;
+    
+    .c-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

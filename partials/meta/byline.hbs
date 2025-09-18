@@ -1,0 +1,19 @@
+<div class="c-byline">
+  <div class="c-byline__avatars">
+    {{#foreach authors}}
+      {{#if profile_image}}
+        <a href="{{ url }}" class="c-byline__avatar-link" data-author-slug="{{ slug }}">
+          <img class="c-byline__avatar" src="{{ img_url profile_image size='profile-image-small' }}" alt="{{ name }}" width="40" height="40" loading="lazy">
+        </a>
+      {{/if}}
+    {{/foreach}}
+  </div>
+  
+  <div class="c-byline__names"><span>{{t "By"}}</span>&nbsp;
+    {{#foreach authors}}
+      <span class="{{#if @first}}u-hidden{{/if}} {{#if @last}}u-hidden{{/if}}">,&nbsp;</span>
+      <span class="u-hidden {{#if @last}}{{#unless @first}}u-block{{/unless}}{{/if}}">&nbsp;&&nbsp;</span>
+      <a href="{{ url }}" class="c-byline__name" data-author-slug="{{ slug }}">{{ name }}</a>
+    {{/foreach}}
+  </div>
+</div>

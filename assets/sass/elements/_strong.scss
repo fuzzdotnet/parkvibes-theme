@@ -1,0 +1,10 @@
+// ------------------------------------
+// Elements > B & Strong
+// ------------------------------------
+
+@use '../mixins/typography';
+
+b,
+strong {
+  @include typography.font($font-weight: bold);
+}

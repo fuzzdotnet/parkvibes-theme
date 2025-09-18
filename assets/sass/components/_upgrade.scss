@@ -1,0 +1,22 @@
+// ------------------------------------
+// Components > Upgrade
+// ------------------------------------
+
+@use '../mixins/mq';
+@use '../mixins/typography';
+
+.c-upgrade {
+  padding: var(--space-400) var(--space-200);
+  border: var(--border-width-default) solid color-mix(in srgb, var(--color-site-text) 20%, transparent);
+  border-radius: var(--border-radius-default);
+  text-align: center;
+  background: color-mix(in srgb, var(--color-site-background) 95%, var(--color-site-text));
+
+  @include mq.mq($from: desktop) {
+    padding: var(--space-400);
+  }
+
+  h2 {
+    @include typography.font($font-weight: medium);
+  }
+}

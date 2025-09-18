@@ -1,0 +1,43 @@
+// ------------------------------------
+// Mixins > Links
+// ------------------------------------
+
+@use 'interaction';
+
+@mixin link-underline-settings($underline-offset: null) {
+  text-decoration: underline;
+
+  @if $underline-offset {
+    text-underline-offset: 20%;
+  }
+}
+
+@mixin link-underline($underline-offset: null) {
+  text-decoration: underline;
+
+  @if $underline-offset {
+    text-underline-offset: 20%;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    text-decoration: none;
+  }
+}
+
+@mixin link-underline-on-hover($underline-offset: null) {
+  &:hover {
+    text-decoration: underline;
+
+    @if $underline-offset {
+      text-underline-offset: 20%;
+    }
+  }
+}
+
+@mixin link-underline-none() {
+  text-decoration: none;
+}

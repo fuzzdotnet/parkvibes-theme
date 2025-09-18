@@ -1,0 +1,11 @@
+{{!< default}}
+
+{{#contentFor "title"}}{{ meta_title }}{{/contentFor}}
+
+{{#post}}
+  {{#match @page.show_title_and_feature_image}}
+    {{> components/content showHeader=true}}
+  {{else}}
+    {{> components/content showHeader=false}}
+  {{/match}}
+{{/post}}

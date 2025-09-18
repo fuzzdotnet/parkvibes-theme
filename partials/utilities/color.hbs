@@ -1,0 +1,14 @@
+{{!-- Blocks > Utilities > Color --}}
+
+{{#has tag="#u-color-bg-dark"}}         u-color-bg-dark         {{/has}}
+{{#has tag="#u-color-bg-light"}}        u-color-bg-light        {{/has}}
+{{#has tag="#u-color-bg-tag-accent"}}   u-color-bg-tag-accent   {{/has}}
+{{#has tag="#u-color-bg-site-accent"}} u-color-bg-site-accent   {{/has}}
+
+{{#has tag="#u-color-text-dark"}}         u-color-text-dark         {{/has}}
+{{#has tag="#u-color-text-light"}}        u-color-text-light        {{/has}}
+{{#has tag="#u-color-text-tag-accent"}}   u-color-text-tag-accent   {{/has}}
+{{#has tag="#u-color-text-site-accent"}} u-color-text-site-accent   {{/has}}
+
+{{!-- See if a tag has accent color --}}
+{{#foreach tags visibility="all" }}{{#if accent_color}} u-exist-tag-accent {{/if}}{{/foreach}}

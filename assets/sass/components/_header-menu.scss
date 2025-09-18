@@ -1,0 +1,280 @@
+// ------------------------------------
+// Components > Header Menu
+// ------------------------------------
+
+@use '../mixins/mq';
+@use '../mixins/typography';
+@use '../mixins/interaction';
+
+.c-menu-wrap {
+  display: flex;
+  align-items: end;
+  flex-direction: row;
+  gap: var(--space-150);
+}
+
+// --- Menu Toggle --- //
+.c-menu-toggle {
+  // Reset button styles
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  // --- End Reset ---
+
+  // -- CSS Variables for dynamic calculation --
+  --menu-toggle-size: var(--space-400); // Use theme token (equivalent to 32px)
+  --menu-toggle-line-height: var(--space-025); // Use theme token (2px)
+  --menu-toggle-line-gap: var(--space-150); // Use theme token (12px)
+
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  z-index: 200;
+  color: var(--color-header-banner-text);
+  overflow: hidden;
+  width: var(--menu-toggle-size);
+  transition: width var(--motion-duration-fast) var(--motion-ease-out);
+  border-radius: var(--border-radius-small);
+  
+  &__label {
+    @include typography.font($font-size: '087', $font-weight: medium, $uppercase: true);
+    opacity: 0;
+    margin-left: var(--space-150);
+    transition: opacity var(--motion-duration-fast) var(--motion-ease-out);
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: none; // Hide on small screens
+    
+    @include mq.mq($from: desktop) {
+      display: block; // Show on desktop screens
+    }
+  }
+  
+  &__icon {
+    width: var(--menu-toggle-size);
+    height: var(--menu-toggle-size);
+    position: relative;
+    flex-shrink: 0;
+    
+    span {
+      display: block;
+      width: 100%;
+      height: var(--menu-toggle-line-height);
+      background-color: currentColor;
+      position: absolute;
+      transition: transform var(--motion-duration-fast) var(--motion-ease);
+      border-radius: var(--border-radius-small);
+
+      &:nth-child(1) {
+        top: calc((var(--menu-toggle-size) - (var(--menu-toggle-line-height) * 2 + var(--menu-toggle-line-gap))) / 2);
+      }
+
+      &:nth-child(2) {
+        top: calc(((var(--menu-toggle-size) - (var(--menu-toggle-line-height) * 2 + var(--menu-toggle-line-gap))) / 2) + var(--menu-toggle-line-height) + var(--menu-toggle-line-gap));
+      }
+    }
+  }
+
+  &.is-active {
+    color: var(--color-header-banner-text);
+    
+    .c-menu-toggle__icon span {
+      background-color: var(--color-header-banner-text);
+
+      &:nth-child(1) {
+        transform: rotate(45deg);
+        top: calc(50% - (var(--menu-toggle-line-height) / 2));
+      }
+
+      &:nth-child(2) {
+        transform: rotate(-45deg);
+        top: calc(50% - (var(--menu-toggle-line-height) / 2));
+      }
+    }
+  }
+}
+
+// Expand button and show label on button hover OR when menu is active
+@include mq.mq($from: desktop) {
+  .c-menu-toggle:hover,
+  body.menu-is-open .c-menu-toggle {
+    width: calc(var(--menu-toggle-size) + var(--space-150) + 3.5ch); // Icon + gap + approximate text width
+    
+    .c-menu-toggle__label {
+      opacity: 1;
+    }
+  }
+}
+
+// Disable body scroll when menu is open
+body.menu-is-open {
+  overflow: hidden;
+}
+
+// Header Menu Dropdown Styles
+.c-header-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  color: var(--color-header-banner-text);
+  background-color: var(--color-header-banner-background);
+  
+  // Remove focus outline since this is only focused programmatically
+  &:focus {
+    outline: none;
+  }
+  
+  // Initial state - completely hidden
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0);
+  transition: opacity var(--motion-transition-standard),
+              visibility var(--motion-transition-standard);
+  z-index: 100;
+  will-change: opacity, visibility, transform;
+  
+  // Respect user's motion preferences
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: var(--motion-duration-fast);
+    
+    &.is-open {
+      .c-header-menu__content {
+        transition-duration: var(--motion-duration-fast);
+      }
+    }
+  }
+
+  // Open state
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    
+    // Content appears instantly - no animation
+    .c-header-menu__content {
+      opacity: 1;
+    }
+  }
+}
+
+.c-header-menu__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--header-padding-mobile);
+  max-width: var(--grid-width);
+  padding: 0 var(--grid-margin);
+  margin: 0 auto;
+  opacity: 0;
+
+  @include mq.mq($from: desktop) {
+    gap: var(--header-padding);
+  }
+  
+  // Match header spacing when scrolled
+  .c-header--sticky.is-scrolled & {
+    gap: var(--header-padding-scrolled);
+  }
+}
+
+// Menu sections
+.c-header-menu__section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: var(--border-width-default) solid rgb(from var(--color-header-banner-text) r g b / 0.1);
+
+  &:first-child {
+    padding-bottom: var(--header-padding-mobile);
+    
+    @include mq.mq($from: desktop) {
+      padding-bottom: var(--header-padding);
+    }
+    
+    // Match header spacing when scrolled
+    .c-header--sticky.is-scrolled & {
+      padding-bottom: var(--header-padding-scrolled);
+    }
+  }
+}
+
+.c-header-menu__section-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: var(--header-padding-mobile);
+  
+  @include mq.mq($from: desktop) {
+    margin-bottom: var(--header-padding);
+  }
+  
+  // Match header spacing when scrolled
+  .c-header--sticky.is-scrolled & {
+    margin-bottom: var(--header-padding-scrolled);
+  }
+}
+
+.c-header-menu__section-title {
+  @include typography.font($font-size: 100, $font-weight: regular, $letter-spacing: base, $uppercase: true);
+  font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+}
+
+.c-header-menu__nav {
+  width: 100%;
+  padding: 0 var(--grid-margin);
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: var(--space-050);
+    column-gap: var(--space-100);
+    
+    @include mq.mq($from: desktop) {
+      row-gap: var(--space-100);
+      column-gap: var(--space-200);
+    }
+  }
+
+  li a {
+    @include typography.font($font-size: '100', $font-weight: medium);
+    display: block;
+    position: relative;
+    @include interaction.link-underline-on-hover();
+
+    // Current page indicator
+    &[aria-current='page'] {
+      @include interaction.link-underline();
+
+      .home-template & {
+        @include interaction.link-underline-none();
+        @include interaction.link-underline-on-hover();
+      }
+    }
+  }
+}
+
+.c-social-links {
+  display: none;
+  gap: var(--space-200);
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%; // Ensure it aligns with centered nav if content is narrow
+
+  @include mq.mq($from: tablet) {
+    margin-top: auto; // Push to bottom only on larger screens
+  }
+
+  a {
+    position: relative;
+    transition: color var(--motion-transition-standard);
+    
+    // Clean underline on hover (same as navigation)
+    @include interaction.link-underline-on-hover();
+  }
+}

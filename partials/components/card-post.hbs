@@ -1,0 +1,104 @@
+<article class="
+  js-card
+  c-card-post
+  {{#if in-tag-section}}c-card-post--in-tag-section{{/if}}
+  {{#unless in-tag-section}}{{#foreach tags limit="1"}}{{#if accent_color}}js-contrast{{/if}}{{/foreach}}{{/unless}}
+  {{#unless feature_image}}c-card-post--has-no-image{{/unless}}
+  {{ visibility }}
+  {{ post_class }}
+  {{ modifierClass }}"
+  {{#foreach tags limit="1"}}{{#if accent_color}}style="--color-tag-accent: {{ accent_color }}"{{/if}}{{/foreach}}>
+
+  {{#if feature_image}}
+    <div class="c-card-post__media">
+      <img class="c-card-post__image"
+           alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+           src="{{ img_url feature_image size='feature-image-small' format='webp' }}"
+           srcset="{{ img_url feature_image size='feature-image-xs' format='webp' }} 400w,
+                   {{ img_url feature_image size='feature-image-small' format='webp' }} 600w,
+                   {{ img_url feature_image size='feature-image-medium' format='webp' }} 1200w"
+           sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33.33vw"
+           loading="lazy"
+      >
+    </div>
+  {{/if}}
+
+  <div class="c-card-post__text">
+    <div class="c-card-post__body">
+      <h3 class="c-card-post__title">
+        <a href="{{ url }}" class="c-card-post__link" aria-label="Read article: {{ title }}">{{ title }}</a>
+      </h3>
+
+      {{#if custom_excerpt}}
+        <div class="c-card-post__excerpt">
+          <p>{{{ custom_excerpt }}}</p>
+        </div>
+      {{/if}}
+    
+      <div class="c-card-post__tags">
+        {{#if tags}}
+          {{#foreach tags limit="3"}}
+            <a href="/tag/{{ slug }}/" class="c-btn c-btn--neutral c-btn--outline c-btn--small">{{ name }}</a>
+          {{/foreach}}
+        {{/if}}
+        
+        {{!-- Only show membership locks if site has membership enabled --}}
+        {{#if @site.members_enabled}}
+          {{!-- Smart lock icon logic based on post visibility and member status --}}
+          {{#has visibility="members"}}
+            {{!-- Members-only post: Show lock if user is not a member --}}
+            {{#unless @member}}
+              <a href="#/portal/signup" class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading c-btn--small" title="{{t 'This content is for subscribers only'}}" data-portal="signup">
+                {{> "icons/lock"}}
+                <span class="c-btn__label">{{t "Subscribe"}}</span>
+              </a>
+            {{/unless}}
+          {{/has}}
+          
+          {{#has visibility="tiers"}}
+            {{!-- Specific tier post: Show appropriate lock based on member status --}}
+            {{#if @member.paid}}
+              {{!-- Paid member: No lock, they can read it (Ghost handles tier access) --}}
+            {{else if @member}}
+              {{!-- Free member: Show upgrade button --}}
+              <a href="#/portal/account/plans" class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading c-btn--small" title="{{t 'This content is for paying subscribers only'}}" data-portal="account/plans">
+                {{> "icons/lock"}}
+                <span class="c-btn__label">{{t "Upgrade"}}</span>
+              </a>
+            {{else}}
+              {{!-- Not logged in: Show subscribe button --}}
+              <a href="#/portal/signup" class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading c-btn--small" title="{{t 'This content is for paying subscribers only'}}" data-portal="signup">
+                {{> "icons/lock"}}
+                <span class="c-btn__label">{{t "Subscribe"}}</span>
+              </a>
+            {{/if}}
+          {{/has}}
+          
+          {{#has visibility="paid"}}
+            {{!-- Paid-only post: Show appropriate lock based on member status --}}
+            {{#if @member.paid}}
+              {{!-- Paid member: No lock, they can read it --}}
+            {{else if @member}}
+              {{!-- Free member: Show upgrade button --}}
+              <a href="#/portal/account/plans" class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading c-btn--small" title="{{t 'This content is for paying subscribers only'}}" data-portal="account/plans">
+                {{> "icons/lock"}}
+                <span class="c-btn__label">{{t "Upgrade"}}</span>
+              </a>
+            {{else}}
+              {{!-- Not logged in: Show subscribe button --}}
+              <a href="#/portal/signup" class="c-btn c-btn--neutral c-btn--outline c-btn--icon c-btn--icon-leading c-btn--small" title="{{t 'This content is for paying subscribers only'}}" data-portal="signup">
+                {{> "icons/lock"}}
+                <span class="c-btn__label">{{t "Subscribe"}}</span>
+              </a>
+            {{/if}}
+          {{/has}}
+        {{/if}}
+      </div>
+    </div>
+    
+    <div class="c-card-post__timestamp">
+      {{> meta/timestamp component="card-post" }}
+    </div>
+  </div>
+
+</article>

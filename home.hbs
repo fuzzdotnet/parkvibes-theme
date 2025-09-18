@@ -1,0 +1,27 @@
+{{!< default}}
+
+{{#contentFor "title"}}{{ meta_title }}{{/contentFor}}
+
+{{> blocks/banner}}
+
+{{^match @custom.featured_posts "Hide section"}}
+  {{> blocks/featured-posts }}
+{{/match}}
+
+{{^match @custom.tag_sections "Hide section"}}
+  {{> blocks/tag-sections }}
+{{/match}}
+
+{{^match @custom.latest_posts "Hide section"}}
+  {{> blocks/latest-posts }}
+{{/match}}
+
+{{^match @custom.exclusive_posts "Hide section"}}
+  {{> blocks/exclusive-posts }}
+{{/match}}
+
+{{#if @custom.enable_newsletters}}
+  {{> blocks/newsletters }}
+{{/if}}
+
+{{> blocks/testimonials }}

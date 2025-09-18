@@ -1,0 +1,6 @@
+{{!-- Blocks > Utilities > HTML Inline Variables — Card Level --}}
+
+style="
+{{#foreach tags visibility='all' }}{{#if accent_color}} --color-tag-accent--card: {{ accent_color }}; {{/if}}{{/foreach}}
+{{#if feature_image}} --feature-image--card: url({{ img_url feature_image format='webp' }}); {{/if}}
+"

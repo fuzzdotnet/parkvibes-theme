@@ -1,0 +1,15 @@
+// ------------------------------------
+// Tokens > Border
+// ------------------------------------
+
+:root {
+  --border-width-default: .5px;
+  --border-width-thick: 2px;
+  --border-style-default: solid;
+
+  --border-radius-small: var(--space-050);
+  --border-radius-default: var(--space-200);
+  --border-radius-medium: var(--space-400);
+  --border-radius-pill: var(--space-600);
+  --border-radius-circle: 50%;
+}

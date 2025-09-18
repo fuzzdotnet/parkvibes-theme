@@ -1,0 +1,32 @@
+{{!-- Structure > Header Tags --}}
+
+<section class="c-header-menu__section">
+  <div class="c-header-menu__section-header">
+    <h3 class="c-header-menu__section-title">{{t "Browse by Topics"}}</h3>
+  </div>
+  <div class="c-header-menu__tags-wrapper">
+    <div class="c-header-menu__tags-container" role="region" aria-label="Browse topics">
+      <div class="c-header-menu__tags-grid">
+        <div class="o-grid o-grid--4-columns o-grid--gap-small">
+          {{#foreach tags}}
+            <a href="/tag/{{ slug }}/" class="c-header-menu__tag-link" {{#if accent_color}} style="--color-tag-accent: {{ accent_color }};" {{/if}}>
+              {{#if feature_image}}
+                <span class="c-header-menu__tag-image-wrapper">
+                  <img class="c-header-menu__tag-image" 
+                       src='{{ img_url feature_image size="tag-image-medium" format="webp" }}' 
+                       srcset='{{ img_url feature_image size="tag-image-medium" format="webp" }} 1000w,
+                               {{ img_url feature_image size="tag-image-large" format="webp" }} 1400w,
+                               {{ img_url feature_image size="tag-image-xl" format="webp" }} 2000w'
+                       sizes='(max-width: 640px) 50vw, 25vw'
+                       alt="{{ name }}" loading='lazy'>
+                </span>
+              {{/if}}
+              <span class="c-header-menu__tag-name">{{ name }} <small class="c-header-menu__tag-count">({{ count.posts }} {{#match count.posts "=" 1}}{{t "post"}}{{else}}{{t "posts"}}{{/match}})</small></span>
+            </a>
+          {{/foreach}}
+        </div>
+      </div>
+    </div>
+    <div class="c-header-menu__tags-indicator" aria-hidden="true"></div>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+{{!< default}}
+
+{{#contentFor 'title'}}{{t "Latest Posts"}}{{/contentFor}}
+
+<header class="c-page-head c-page-head--index">
+  <div class="c-page-head__inner">
+    {{!-- Tag dropdown with Latest as first option --}}
+    <details class="c-tag-dropdown">
+      <summary class="c-tag c-tag-dropdown__summary">
+        {{!-- Display Latest as current selection --}}
+        <span class="c-tag__name c-tag-dropdown__current-name">{{t "Latest Posts"}}</span>
+        {{!-- Chevron icon --}}
+        {{> icons/chevron-down }}
+      </summary>
+      
+      {{!-- Dropdown list with Latest first, then all tags --}}
+      <ul class="c-tag-dropdown__list u-plain-list">
+        {{!-- Latest option (current page) --}}
+        <li>
+          <a href="/latest/" class="c-tag-dropdown__link c-tag-dropdown__latest" aria-current="page">
+            <span class="c-tag-dropdown__name">{{t "Latest Posts"}}</span>
+          </a>
+        </li>
+        
+        {{!-- All tags --}}
+        {{#get "tags" limit="50" include="count.posts" as |tags|}}
+          {{#foreach tags}}
+            <li>
+              <a href="/tag/{{ slug }}/" class="c-tag-dropdown__link" {{#if accent_color}} style="--color-tag-accent: {{ accent_color }};" {{else}} style="--color-tag-accent: initial;" {{/if}}>
+                {{#if feature_image}}
+                   <span class="c-tag-dropdown__image-wrapper">
+                     <img class="c-tag-dropdown__image" 
+                          src="{{ img_url feature_image size='tag-image-small' format='webp' }}" 
+                          alt="{{ name }}" loading="lazy">
+                   </span>
+                {{/if}}
+                <span class="c-tag-dropdown__name">{{ name }}</span>
+                <small class="c-tag-dropdown__count">({{ count.posts }} {{#match count.posts "=" 1}}{{t "post"}}{{else}}{{t "posts"}}{{/match}})</small>
+              </a>
+            </li>
+          {{/foreach}}
+        {{/get}}
+      </ul>
+    </details>
+
+    {{!-- Display site description --}}
+    {{#if @site.description}}
+      <p class="c-page-head__description u-font-subHeading">{{ @site.description }}</p>
+    {{/if}}
+  </div>
+</header>
+
+{{> components/loop }}
+
+{{ pagination }}

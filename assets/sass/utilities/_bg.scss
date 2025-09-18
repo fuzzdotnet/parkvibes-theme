@@ -1,0 +1,29 @@
+// ------------------------------------
+// Utilities > Background
+// ------------------------------------
+
+.u-bg-feature-image.u-exist-feature-image {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: var(--feature-image--card, var(--feature-image--block));
+
+  // Disable the fixed background attachment. Not supported in iOS
+  // https://stackoverflow.com/a/52266360/558777
+  @supports (-webkit-overflow-scrolling: touch) {
+    background-attachment: scroll;
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    inset: 0;
+    background-color: var(--color-background-transparent);
+    pointer-events: none;
+  }
+
+  * {
+    z-index: 1;
+  }
+}

@@ -1,0 +1,10 @@
+// ------------------------------------
+// Components > Comments
+// ------------------------------------
+
+.c-comments {
+  padding: var(--space-300);
+  background: color-mix(in srgb, var(--color-site-background) 95%, var(--color-site-text));
+  border: var(--border-width-default) solid color-mix(in srgb, var(--color-site-text) 20%, transparent);
+  border-radius: var(--border-radius-default);
+}

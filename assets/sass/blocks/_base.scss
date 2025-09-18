@@ -1,0 +1,62 @@
+// ------------------------------------
+// Blocks > Base
+// ------------------------------------
+
+@use '../mixins/typography';
+
+.c-block {
+  // --color-text: var(--color-site-text);
+  --block-padding: var(--block-space-base);
+
+  color: var(--color-site-text);
+  padding-top: var(--block-padding);
+  padding-bottom: var(--block-padding);
+
+  // Remove top padding when following other blocks (but not banners)
+  &:not(.c-block--banner) + .c-block:not([class*="bg-"]) {
+    padding-top: 0;
+  }
+
+  // Modifier class to manually remove top padding
+  &--flush-top {
+    padding-top: 0;
+  }
+
+  // Modifier class to manually remove all padding
+  &--flush {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  // + .c-block {
+  //   border-top: var(--border-width-default) var(--border-style-default);
+  // }
+
+  &.u-color-bg-site-accent:not(:is(.c-block--video, .c-block--image):has(.kg-width-full))
+  + &.u-color-bg-site-accent {
+    border-top: var(--border-width-default) var(--border-style-default);
+  }
+
+  &__headline {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    gap: var(--space-300);
+    margin-bottom: var(--space-800);
+
+    &-title {
+      @include typography.responsive-font-size-600();
+      @include typography.font($font-weight: bold);
+      font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+    }
+
+    &-title--small {
+      @include typography.font($font-size: 150, $font-weight: regular, $letter-spacing: base, $uppercase: true);
+      font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+    }
+
+    &-excerpt {
+      @include typography.font-excerpt();
+    }
+  }
+}

@@ -1,0 +1,44 @@
+// ------------------------------------
+// Blocks > Text
+// ------------------------------------
+
+@use '../mixins/links';
+@use '../mixins/typography';
+
+.c-block--text {
+  @include typography.responsive-font-size-250(); // x-large
+  @include typography.font($text-wrap: pretty);
+
+  a {
+    &:not([class]) {
+      @include links.link-underline();
+    }
+
+    &:has(strong) {
+      color: var(--color-site-accent);
+    }
+  }
+
+  h2 {
+    @include typography.responsive-font-size-300();
+  }
+
+  h3 {
+    @include typography.responsive-font-size-250();
+  }
+
+  &__excerpt {
+    @include typography.font-excerpt();
+  }
+}
+
+.c-block--text__content {
+  > * + * {
+    margin-top: var(--content-flow);
+  }
+
+  :is(dd, ol, ul) {
+    padding-left: var(--space-200);
+    padding-right: var(--space-200);
+  }
+}

@@ -1,0 +1,91 @@
+// ------------------------------------
+// Editor > Content
+// ------------------------------------
+
+@use '../mixins/mq';
+@use '../mixins/links';
+@use '../mixins/typography';
+
+.c-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  > * {
+    min-width: 100%;
+  }
+
+  > * + * {
+    margin-top: var(--content-flow);
+  }
+
+  .hide-title-feature-image &:only-child>:first-child:not(.kg-width-full) {
+    margin-top: var(--content-flow);
+  }
+
+  a:not([class]) {
+    @include links.link-underline();
+  }
+
+  // Elements without a class & if the element starts with the u-drop-cap class
+  > :where(:not([class]),
+          [class*='u-drop-cap']) {
+    word-break: break-word;
+    font-family: var(--gh-font-body, var(--font-family-serif));
+    @include typography.font($font-size: 125);
+  }
+
+  &--justification-on > :where(p, ol, ul, blockquote:not([class])) {
+    text-align: justify;
+  }
+
+  &--indentation-on:not(.u-indentation-off) > p {
+    + p:not(:first-of-type, [class*='u-drop-cap']) {
+      text-indent: var(--text-indent);
+    }
+
+    + p:not([class*='u-drop-cap']) {
+      margin-top: 0;
+    }
+  }
+
+  // Remove space between full-width cards
+  > .kg-width-full + .kg-width-full:not(.kg-width-full.kg-card-hascaption + .kg-width-full) {
+    margin-top: 0;
+  }
+
+  > :where(h1, h2, h3, h4, h5) {
+    @include typography.font($font-weight: 'semi-bold');
+    font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+
+    + * {
+      margin-top: calc(var(--content-flow) / 4);
+    }
+
+    + figure {
+      margin-top: calc(var(--content-flow) / 2);
+    }
+  }
+
+  > :where(h2) {
+    @include mq.mq($from: desktop) {
+      @include typography.font($font-size: 200);
+    }
+  }
+
+  > :where(h3) {
+    @include mq.mq($from: desktop) {
+      @include typography.font($font-size: 175);
+    }
+  }
+
+  > :where(dd, ol, ul) {
+    padding-left: var(--space-200);
+  }
+
+  // Hide Ghost built-in upgrade call to action box
+  .gh-post-upgrade-cta {
+    display: none;
+    visibility: hidden
+  }
+}

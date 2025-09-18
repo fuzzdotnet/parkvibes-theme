@@ -1,0 +1,70 @@
+// ------------------------------------
+// Tokens > Space
+// ------------------------------------
+
+@use '../mixins/mq';
+
+// Space tokens
+// The 8px base unit forms the basis of our space token system.
+// Every space token is a multiple of this base unit, with the number
+// suffix representing the percentage of the base unit.
+
+:root {
+  // Base unit = 8px
+  --space-0:      0px;     // 0x    - 0px
+  --space-025:    2px;     // 0.25x - 2px
+  --space-050:    4px;     // 0.5x  - 4px
+  --space-075:    6px;     // 0.75x - 6px
+  --space-100:    8px;     // 1x    - 8px
+  --space-150:   12px;     // 1.5x  - 12px
+  --space-200:   16px;     // 2x    - 16px
+  --space-250:   20px;     // 2.5x  - 20px
+  --space-300:   24px;     // 3x    - 24px
+  --space-400:   32px;     // 4x    - 32px
+  --space-500:   40px;     // 5x    - 40px
+  --space-600:   48px;     // 6x    - 48px
+  --space-700:   56px;     // 7x    - 56px
+  --space-800:   64px;     // 8x    - 64px
+  --space-900:   72px;     // 9x    - 72px
+  --space-1000:  80px;     // 10x   - 80px
+  --space-1200:  96px;     // 12x   - 96px
+  --space-1600: 128px;     // 16x   - 128px
+  --space-2000: 160px;     // 20x   - 160px
+  --space-2400: 192px;     // 24x   - 192px
+  --space-3200: 256px;     // 32x   - 256px
+  --space-4000: 320px;     // 40x   - 320px
+  --space-4800: 384px;     // 48x   - 384px
+  --space-5600: 448px;     // 56x   - 448px
+  
+  --space-800-fixed: 64px;
+  --space-1200-fixed: 96px;
+
+  // Dynamic spacing for responsive design
+  --space-scale: 1;        // Base scale factor (desktop)
+}
+
+// Tab
+@include mq.mq($until: desktop) {
+  :root {
+    // Responsive scale factor for tablet
+    --space-scale: 0.75;    // 75% of desktop size
+    
+    // Dynamic spacing using calc() - these will automatically scale based on --space-scale
+    --space-800:  calc(64px * var(--space-scale));    // Scales to ~48px on tablet
+    --space-1200: calc(96px * var(--space-scale));   // Scales to ~72px on tablet
+    --space-1600: calc(128px * var(--space-scale));  // Scales to ~96px on tablet
+    --space-2400: calc(192px * var(--space-scale));  // Scales to ~144px on tablet
+    --space-3200: calc(256px * var(--space-scale));  // Scales to ~192px on tablet
+    --space-4000: calc(320px * var(--space-scale));  // Scales to ~240px on tablet
+    --space-4800: calc(384px * var(--space-scale));  // Scales to ~288px on tablet
+    --space-5600: calc(448px * var(--space-scale));  // Scales to ~336px on tablet
+  }
+}
+
+// Mobile
+@include mq.mq($until: tablet) {
+  :root {
+    // Responsive scale factor for mobile
+    --space-scale: 0.5;     // 50% of desktop size
+  }
+}

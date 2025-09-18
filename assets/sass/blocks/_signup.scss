@@ -1,0 +1,11 @@
+// ------------------------------------
+// Blocks > Signup
+// ------------------------------------
+
+.c-block--signup {
+  padding: 0;
+}
+
+.c-block--signup:has(.kg-width-full) {
+  padding-top: 0;
+}

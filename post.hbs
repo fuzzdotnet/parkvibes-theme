@@ -1,0 +1,8 @@
+{{!< default}}
+
+{{#contentFor "title"}}{{ meta_title }}{{/contentFor}}
+
+{{#post}}
+  {{> components/content showHeader=true}}
+  {{> blocks/related-posts }}
+{{/post}}

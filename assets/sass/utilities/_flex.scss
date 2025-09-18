@@ -1,0 +1,29 @@
+// ------------------------------------
+// Utilities > Flex
+// ------------------------------------
+
+.u-flex {
+  display: flex;
+}
+
+.u-flex-direction-column {
+  flex-direction: column;
+}
+
+.u-align-items-center {
+  align-items: center;
+}
+
+
+
+.u-flex-direction-column {
+  flex-direction: column;
+}
+
+.u-gap-100 {
+  gap: var(--space-100);
+}
+
+.u-gap-none {
+  gap: 0;
+}

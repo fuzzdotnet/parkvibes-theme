@@ -1,0 +1,28 @@
+// ------------------------------------
+// Editor > General
+// ------------------------------------
+
+@use '../mixins/mq';
+@use '../mixins/layout';
+@use '../mixins/typography';
+
+.kg-card figcaption {
+  @include typography.caption();
+}
+
+.kg-width-wide {
+  width: 100%;
+
+  @include mq.mq($from: tablet) {
+    @include layout.kg-width-wide();
+  }
+}
+
+.kg-width-full {
+  @include layout.kg-width-full();
+
+  figcaption {
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin);
+  }
+}

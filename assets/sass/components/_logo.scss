@@ -1,0 +1,17 @@
+// ------------------------------------
+// Components > Logo
+// ------------------------------------
+
+@use '../mixins/typography';
+
+.c-logo {
+  &__link {
+    @include typography.font($font-size: 150, $line-height: 1, $font-weight: medium);
+    display: block;
+  }
+
+  &__img {
+    max-width: var(--space-2000);
+    max-height: var(--space-600);
+  }
+}

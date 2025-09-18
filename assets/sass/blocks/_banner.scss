@@ -1,0 +1,352 @@
+// ------------------------------------
+// Blocks > Banner
+// ------------------------------------
+
+@use '../mixins/mq';
+@use '../mixins/links';
+@use '../mixins/typography';
+
+// ------------------------------------
+// Base Container
+// ------------------------------------
+
+.c-block--banner {
+  color: var(--color-header-banner-text);
+  background-color: var(--color-header-banner-background);
+  padding-top: calc(var(--block-padding) - var(--header-padding));
+  
+  .kg-btn-accent {
+    vertical-align: middle;
+    --btn-accent-color: var(--color-header-banner-text);
+    --btn-contrast-color: var(--color-header-banner-background);
+  }
+  
+  a:not([class]) {
+    @include links.link-underline();
+  }
+  
+  h3 {
+    @include typography.font($font-size: 200);
+  }
+}
+
+// ------------------------------------
+// Animation
+// ------------------------------------
+
+@media (prefers-reduced-motion: no-preference) {
+  .c-block--banner-animated {
+    .c-block--banner__content > * {
+      opacity: 0;
+    }
+  }
+}
+
+// ------------------------------------
+// Content Container
+// ------------------------------------
+
+.c-block--banner__content {
+  --media-size: 1lh;
+  
+  font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+  @include typography.font($font-weight: bold, $text-wrap: pretty);
+}
+
+// ------------------------------------
+// Text Sizes
+// ------------------------------------
+
+.c-block--banner-text-extra-large .c-block--banner__content {
+  @include typography.responsive-font-size-1100();
+}
+
+.c-block--banner-text-large .c-block--banner__content {
+  @include typography.responsive-font-size-600();
+}
+
+.c-block--banner-text-medium .c-block--banner__content {
+  @include typography.responsive-font-size-400();
+}
+
+.c-block--banner-text-small .c-block--banner__content {
+  @include typography.responsive-font-size-200();
+}
+
+// ------------------------------------
+// Layout Modes
+// ------------------------------------
+
+.c-block--banner-stacked .c-block--banner__content {
+  display: flex;
+  flex-direction: column;
+  column-gap: 0;
+  
+  > * {
+    min-width: 100%;
+  }
+  
+  > * + * {
+    margin-top: calc(1lh / 5);
+  }
+}
+
+.c-block--banner-inline .c-block--banner__content {
+  display: block;
+  text-align: inherit;
+  
+  > * {
+    min-width: auto;
+    display: inline;
+    vertical-align: middle;
+    margin-right: calc(1lh / 5);
+  }
+  
+  > *:last-child {
+    margin-right: 0;
+  }
+  
+  > p {
+    display: inline;
+  }
+  
+  > figure {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+// ------------------------------------
+// Text Alignment
+// ------------------------------------
+
+.c-block--banner-text-left.c-block--banner-stacked .c-block--banner__content {
+  text-align: left;
+  align-items: flex-start;
+
+  .kg-button-card {
+    justify-content: left;
+  }
+}
+
+.c-block--banner-text-left.c-block--banner-inline .c-block--banner__content {
+  text-align: left;
+}
+
+.c-block--banner-text-center.c-block--banner-stacked .c-block--banner__content {
+  align-items: center;
+  text-align: center;
+
+  .kg-button-card {
+    justify-content: center;
+  }
+}
+
+.c-block--banner-text-center.c-block--banner-inline .c-block--banner__content {
+  text-align: center;
+}
+
+// Width constraints for centered text only
+.c-block--banner-text-center {
+  &.c-block--banner-text-medium .c-block--banner__content {
+    @include mq.mq($from: wide) {
+      max-width: 85%;
+      margin: 0 auto;
+    }
+  }
+  
+  &.c-block--banner-text-small .c-block--banner__content {
+    @include mq.mq($from: wide) {
+      max-width: 75%;
+      margin: 0 auto;
+    }
+  }
+}
+
+// ------------------------------------
+// Inline Media Styling
+// ------------------------------------
+
+.c-block--banner-inline .c-block--banner__content {
+  figure {
+    overflow: hidden;
+    width: var(--media-size);
+    height: var(--media-size);
+    background-color: var(--color-header-banner-text);
+    position: relative;
+    
+    img,
+    .kg-video-container {
+      height: var(--media-size);
+      object-fit: cover;
+      transition: opacity var(--motion-duration-medium) var(--motion-ease);
+    }
+  }
+  
+  figure:nth-child(3n+1) {
+    clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%);
+  }
+  
+  figure:nth-child(3n+2) {
+    clip-path: polygon(50% 0, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0 43%, 17% 12%);
+  }
+  
+  figure:nth-child(3n+3) {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  }
+  
+  figure:has(a:focus-visible) {
+    clip-path: none !important;
+    
+    a:focus-visible {
+      display: block !important;
+    }
+  }
+  
+  figure:after,
+  figure:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  figure:after {
+    background-color: currentColor;
+    z-index: 1;
+    mix-blend-mode: darken;
+    opacity: 0.3;
+    transition: opacity var(--motion-duration-medium) var(--motion-ease);
+  }
+  
+  figure:hover:after {
+    opacity: 0.15;
+  }
+}
+
+// ------------------------------------
+// Signup Card (Banner overrides)
+// ------------------------------------
+
+.c-block--banner {
+  // Helpers for the signup form fields to harmonize with banner colors
+  --banner-cta-bg: color-mix(in srgb, var(--color-header-banner-text) 8%, var(--color-header-banner-background));
+  --banner-cta-border: color-mix(in srgb, var(--color-header-banner-text) 22%, transparent);
+
+  .kg-signup-card {
+    background-color: var(--color-header-banner-background) !important;
+    width: 100%;
+    max-width: 100%;
+
+    &.kg-width-wide,
+    &.kg-width-full {
+      width: 100%;
+      max-width: 100%;
+
+      .kg-signup-card-content {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    &.kg-width-full:not(.kg-layout-split) .kg-signup-card-text {
+      padding: 0;
+    }
+
+    &.kg-style-accent {
+      background: var(--color-header-banner-background) !important;
+    }
+  }
+
+  .kg-signup-card-heading,
+  .kg-signup-card-subheading {
+    color: var(--color-header-banner-text) !important;
+  }
+
+  // Alignment: default left; center when banner is centered
+  .kg-signup-card-text {
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  &.c-block--banner-text-center {
+    .kg-signup-card-text {
+      align-items: center;
+    }
+  }
+
+  // Fields container styling and width behavior
+  .kg-signup-card-fields {
+    background-color: var(--banner-cta-bg);
+    box-shadow: 0 0 0 var(--border-width-thick) var(--banner-cta-border);
+    margin-left: 0;
+    margin-right: 0;  
+
+    input {
+      color: var(--color-header-banner-text);
+
+      &::placeholder {
+        color: color-mix(in srgb, var(--color-header-banner-text) 75%, transparent);
+      }
+    }
+  }
+
+  .kg-signup-card .kg-signup-card-fields {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .kg-layout-split .kg-signup-card-content {
+    grid-template-columns: 1fr;
+  }
+
+  &.c-block--banner-text-center {
+    .kg-signup-card-fields {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .kg-signup-card-success,
+    .kg-signup-card-error,
+    .kg-signup-card-disclaimer {
+      text-align: center;
+    }
+  }
+
+  // Ensure the signup card sits on its own line when banner uses Inline layout
+  &.c-block--banner-inline {
+    .kg-signup-card {
+      display: block;
+      min-width: 100%;
+      margin-top: calc(1lh / 5);
+      margin-right: 0;
+    }
+  }
+
+  // Status / disclaimer colors and alignment
+  .kg-signup-card-success,
+  .kg-signup-card-error,
+  .kg-signup-card-disclaimer {
+    @include typography.font($font-weight: regular);
+    color: var(--color-header-banner-text) !important;
+    text-align: left;
+  }
+}
+
+// ------------------------------------
+// Additional Elements
+// ------------------------------------
+  
+.c-block--banner__excerpt {
+  @include typography.font-excerpt();
+}
+
+.c-block--banner__image-caption {
+  @include typography.caption();
+}

@@ -1,0 +1,41 @@
+// ------------------------------------
+// Elements > Input
+// ------------------------------------
+
+@use '../mixins/typography';
+
+input[type='text'],
+input[type='password'],
+input[type='date'],
+input[type='month'],
+input[type='week'],
+input[type='email'],
+input[type='number'],
+input[type='search'],
+input[type='tel'],
+input[type='time'],
+input[type='url'],
+input[type='color'],
+input[type='datetime'],
+input[type='datetime-local'],
+select,
+textarea {
+  @include typography.font($font-family: sans-serif, $font-size: 100, $font-weight: medium);
+
+  width: 100%;
+  display: block;
+  border: none;
+  color: var(--color-site-text);
+  padding: var(--space-150) var(--space-300);
+  border-radius: var(--border-radius-default);
+  background: transparent;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &::placeholder {
+    opacity: 1;
+    color: var(--color-site-text);
+  }
+}

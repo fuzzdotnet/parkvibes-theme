@@ -1,0 +1,18 @@
+// ------------------------------------
+// Editor > Tweet Card
+// ------------------------------------
+
+.twitter-tweet.twitter-tweet-rendered {
+  min-width: auto;
+  margin-bottom: 0 !important;
+  margin-top: var(--content-flow) !important;
+
+  // When embedded using the editor Twitter card
+  .kg-embed-card & {
+    margin-top: 0 !important;
+  }
+
+  .kg-embed-card:has(&) {
+    background-color: transparent;
+  }
+}

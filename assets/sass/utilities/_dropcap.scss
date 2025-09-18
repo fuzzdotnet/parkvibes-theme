@@ -1,0 +1,40 @@
+// ------------------------------------
+// Utilities > Drop Cap
+// ------------------------------------
+
+.u-drop-cap-small,
+.u-drop-cap-large {
+  &:first-letter {
+    float: left;
+    margin-top: var(--space-150);
+
+    @supports (initial-letter: 1 1) {
+      float: none;
+      margin-top: 0;
+    }
+  }
+
+  &:first-line {
+    font-variant: small-caps;
+  }
+}
+
+.u-drop-cap-small::first-letter {
+  font-size: 60px;
+  line-height: 42px;
+  margin-right: var(--space-100);
+
+  @supports (initial-letter: 1 1) {
+    initial-letter: 2;
+  }
+}
+
+.u-drop-cap-large::first-letter {
+  font-size: 106px;
+  line-height: 74px;
+  margin-right: var(--space-150);
+
+  @supports (initial-letter: 1 1) {
+    initial-letter: 3;
+  }
+}

@@ -1,0 +1,41 @@
+// ------------------------------------
+// Elements > code & pre
+// ------------------------------------
+
+@use '../mixins/typography';
+
+p code,
+li code {
+  padding: var(--space-050) var(--space-100);
+  border-radius: var(--border-radius-small);
+  border: var(--border-width-default) var(--border-style-default) var(--color-site-text);
+}
+
+code,
+code[class*='language-'] {
+  @include typography.font($font-family: monospace, $font-size: 100);
+
+  text-shadow: none;
+}
+
+pre,
+pre[class*='language-'],
+.kg-code-card {
+  width: 100%;
+  overflow-x: auto;
+}
+
+pre,
+pre[class*='language-'] {
+  padding: var(--space-300);
+  margin-top: var(--content-flow) !important;
+  margin-bottom: 0 !important;
+}
+
+.kg-code-card pre {
+  margin-top: 0;
+}
+
+.token.operator {
+  background-color: transparent;
+}

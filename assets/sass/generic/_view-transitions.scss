@@ -1,0 +1,11 @@
+// ------------------------------------
+// Generic > View Transitions
+// ------------------------------------
+// Enables smooth page transitions using the View Transitions API
+// Gracefully degrades in browsers that don't support it
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}

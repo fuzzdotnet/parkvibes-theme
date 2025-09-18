@@ -1,0 +1,28 @@
+<footer class="c-footer">
+  <div class="o-grid">
+    <div class="c-footer__content">
+      
+      <div class="c-footer__logo">
+        <a class="c-footer__logo-link c-footer__logo-text" href="{{ @site.url }}">{{ @site.title }}</a>
+      </div>
+      
+      <ul class="c-footer-social u-plain-list">
+        {{> components/social-links }}
+      </ul>
+      
+      {{#if @site.secondary_navigation}}
+        <ul class="c-footer-nav u-plain-list">
+          {{ navigation type="secondary" }}
+        </ul>
+      {{/if}}
+      
+      <div class="c-footer__copy">
+        &copy; {{ date format="YYYY" }} {{ @site.title }}
+        <span>– {{{t "Published with {ghostLink} & {themeLink}" 
+          ghostLink='<a href="https://ghost.org" target="_blank" rel="noopener noreferrer">Ghost</a>' 
+          themeLink='<a href="https://aspirethemes.com/themes/marsa" target="_blank" rel="noopener noreferrer">Marsa</a>' }}}</span>
+      </div>
+      
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,39 @@
+// ------------------------------------
+// Blocks > Editors Picks
+// ------------------------------------
+
+@use '../mixins/typography';
+
+.c-block--editors-picks {
+  .c-editors-picks-grid {
+    counter-reset: editors-pick-counter;
+  }
+
+  .c-card-post {
+    position: relative;
+    counter-increment: editors-pick-counter;
+
+    &::after {
+      content: counter(editors-pick-counter);
+      position: absolute;
+      top: var(--space-200);
+      left: var(--space-200);
+      z-index: 2;
+      pointer-events: none;
+      @include typography.font($font-size: '600', $font-weight: bold, $line-height: '400');
+      color: transparent;
+      -webkit-text-stroke: var(--space-025) var(--color-site-text);
+      background: var(--color-site-background);
+      padding: var(--space-050) var(--space-200);
+      border-top-left-radius: calc(var(--border-radius-default) * 0.75);
+      border-bottom-right-radius: calc(var(--border-radius-default) * 0.75);
+    }
+    
+    // Use subtle background when card has no tag accent color 
+    &:not([style*="--color-tag-accent"]) {
+      &::after {
+        background: color-mix(in srgb, var(--color-site-text) 3%, var(--color-site-background));
+      }
+    }
+  }
+}

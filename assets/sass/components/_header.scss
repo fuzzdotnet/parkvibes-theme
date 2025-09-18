@@ -1,0 +1,112 @@
+// ------------------------------------
+// Components > Header
+// ------------------------------------
+
+@use '../mixins/mq';
+
+// Component-specific header tokens
+:root {
+  // Base header padding values - change these to update entire system
+  --header-padding-base: var(--space-400);                         // 32px - main control value
+  --header-inner-padding-base-v: var(--space-200);                 // 16px - main control value
+  --header-inner-padding-base-h: var(--space-300);                 // 24px - main control value
+  
+  // Calculated responsive values - automatically scale from base (8px compliant)
+  --header-padding: var(--header-padding-base);                    // 32px - desktop
+  --header-padding-mobile: calc(var(--header-padding-base) * 0.5); // 16px - auto-calculated
+  --header-padding-scrolled: calc(var(--header-padding-base) * 0.5); // 16px - auto-calculated
+  --header-padding-scrolled-mobile: calc(var(--header-padding-base) * 0.25); // 8px - auto-calculated
+  
+  --header-inner-padding-v: var(--header-inner-padding-base-v);    // 16px - desktop vertical
+  --header-inner-padding-h: var(--header-inner-padding-base-h);    // 24px - horizontal (shared)
+  --header-inner-padding-mobile-v: calc(var(--header-inner-padding-base-v) * 0.75); // 12px - auto-calculated
+  --header-inner-padding-scrolled-v: calc(var(--header-inner-padding-base-v) * 0.5); // 8px - auto-calculated
+  --header-inner-padding-scrolled-h: var(--space-200);             // 16px - direct token (24px * 0.67 = 16.08px breaks 8px)
+  --header-inner-padding-scrolled-mobile-v: calc(var(--header-inner-padding-base-v) * 0.5); // 8px - auto-calculated
+}
+
+.c-header {
+  position: relative;
+  padding-top: var(--header-padding-mobile); 
+  padding-bottom: var(--header-padding-mobile);
+  color: var(--color-header-banner-text);
+  background-color: var(--color-header-banner-background);
+  transition: padding var(--motion-duration-fast) var(--motion-ease), background-color var(--motion-duration-fast) var(--motion-ease); 
+
+  @include mq.mq($from: desktop) {
+    padding-top: var(--header-padding); 
+    padding-bottom: var(--header-padding);
+  }
+  
+  &__inner {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+
+    padding: var(--header-inner-padding-mobile-v) var(--header-inner-padding-h); 
+    border: var(--border-width-default) solid var(--color-header-banner-text);
+    border-radius: var(--border-radius-pill);
+    color: var(--color-header-banner-text);
+    background-color: var(--color-header-banner-background);
+    transition: padding var(--motion-duration-fast) var(--motion-ease), background-color var(--motion-duration-fast) var(--motion-ease);
+
+    @include mq.mq($from: desktop) {
+      width: 40%;
+      padding: var(--header-inner-padding-v) var(--header-inner-padding-h); 
+    }
+    
+    @include mq.mq($from: wide) {
+      width: 32%;
+    }
+  }
+
+  &--sticky {
+    top: 0;
+    z-index: 1000;
+    position: sticky;
+
+    &.is-scrolled {
+      padding-top: var(--header-padding-scrolled-mobile); 
+      padding-bottom: var(--header-padding-scrolled-mobile);
+      transition: padding var(--motion-duration-fast) var(--motion-ease), background-color var(--motion-duration-fast) var(--motion-ease); 
+        
+      @include mq.mq($from: desktop) {
+        padding-top: var(--header-padding-scrolled); 
+        padding-bottom: var(--header-padding-scrolled);
+      }
+        
+      .c-header__inner {
+        padding: var(--header-inner-padding-scrolled-mobile-v) var(--header-inner-padding-scrolled-h); 
+        transition: padding var(--motion-duration-fast) var(--motion-ease), background-color var(--motion-duration-fast) var(--motion-ease);
+        
+        @include mq.mq($from: desktop) {
+          padding: var(--header-inner-padding-scrolled-v) var(--header-inner-padding-scrolled-h);
+        }
+      }
+    }
+  }
+}
+
+// Header background states
+.c-header--sticky {
+  // Default scrolled state: optimized for performance
+  body:not(.menu-is-open) &.is-scrolled {
+    background-color: rgb(from var(--color-header-banner-background) r g b / 98%);
+    
+    .c-header__inner {
+      background-color: rgb(from var(--color-header-banner-background) r g b / 98%);
+    }
+  }
+  
+  // When menu is open: solid background
+  body.menu-is-open & {
+    background-color: var(--color-header-banner-background);
+    
+    .c-header__inner {
+      background-color: var(--color-header-banner-background);
+    }
+  }
+}

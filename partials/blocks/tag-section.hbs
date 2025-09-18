@@ -1,0 +1,39 @@
+{{!-- Blocks > Tag Section --}}
+
+<section class="c-block c-block--tag-section c-block--tag-section-{{slug}}
+  {{> utilities/general }} {{ post_class }}"
+  {{> utilities/id }}>
+
+  <div class="o-grid">
+    <div class="c-block--tag-section__content {{#if accent_color}} js-contrast{{/if}}" {{#if accent_color}} style="--color-tag-accent: {{ accent_color }};" {{/if}}>
+      {{!-- Tag section header with link to tag page --}}
+      <div class="c-block--tag-section__header">
+        <div class="c-block--tag-section__header-content">
+          <h2 class="c-block--tag-section__title">
+            <a href="/tag/{{ slug }}/" class="c-block--tag-section__title-link">
+              {{#if feature_image}}
+                <span class="c-block--tag-section__title-image-wrapper">
+                  <img class="c-block--tag-section__title-image"
+                       src="{{ img_url feature_image size="tag-image-small" format="webp" }}"
+                       alt="" loading="lazy">
+                </span>
+              {{/if}}
+              {{ name }}
+            </a>
+          </h2>
+        </div>
+      </div>
+
+      {{!-- Posts grid for this tag --}}
+      {{#get "posts" filter="tags:{{slug}}" include="tags" limit="3" as |posts|}}
+        {{#if posts}}
+          <div class="o-grid o-grid--3-columns">
+            {{#foreach posts}}
+              {{> components/card-post in-tag-section="true" }}
+            {{/foreach}}
+          </div>
+        {{/if}}
+      {{/get}}
+    </div>
+  </div>
+</section>

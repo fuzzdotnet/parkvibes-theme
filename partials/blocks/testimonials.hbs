@@ -1,0 +1,33 @@
+{{!-- Blocks > Testimonials --}}
+
+{{#get "pages" limit="50" filter="tag:hash-testimonial" include="tags" order="published_at desc" as |testimonials|}}
+{{#if testimonials}}
+<section class="c-block c-block--testimonials
+  {{> utilities/general }} {{ post_class }}"
+  {{> utilities/inline-block }}
+  {{> utilities/id }}>
+
+  {{!-- {{#get "pages" filter="tag:hash-block_testimonials" include="tags" limit="1" order="published_at desc" as |pages|}}
+    {{#foreach pages}}
+      {{> blocks/block-heading }}
+    {{/foreach}}
+  {{/get}} --}}
+
+  <div class="o-grid">
+    <div class="c-block--testimonials__content">
+      <div class="c-testimonials">
+        {{#foreach testimonials}}
+          {{> components/card-testimonial }}
+        {{/foreach}}
+      </div>
+    </div>
+
+    {{#if html}}
+      <div class="c-block--testimonials__content">
+        {{ content }}
+      </div>
+    {{/if}}
+  </div>
+</section>
+{{/if}}
+{{/get}}

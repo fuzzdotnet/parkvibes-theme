@@ -1,0 +1,31 @@
+// ------------------------------------
+// Mixins > Interaction
+// ------------------------------------
+
+@mixin attention() {
+  &:is(:hover, :active, :focus) {
+    @content;
+  }
+}
+
+@mixin link-underline() {
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    text-decoration: none;
+  }
+}
+
+@mixin link-underline-on-hover() {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin link-underline-none() {
+  text-decoration: none;
+}

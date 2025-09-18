@@ -1,0 +1,27 @@
+// ------------------------------------
+// Components > Card Stat
+// ------------------------------------
+
+@use '../mixins/typography';
+
+.c-card-stat {
+  --color-text: var(--color-site-text);
+
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-100);
+  padding: var(--card-padding);
+  color: var(--color-site-text);
+  border-radius: var(--border-radius-default);
+
+  &__title {
+    @include typography.responsive-font-size-400();
+    @include typography.font($font-weight: medium, $letter-spacing: negative);
+  }
+
+  &__content {
+    @include typography.font($font-size: 125, $text-wrap: balance);
+  }
+}

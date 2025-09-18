@@ -1,0 +1,26 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{{ block "title" }}}</title>
+
+  {{> design/preconnect }}
+
+  <script>
+    var paginationLoadingText          = '{{t "Loading" }}',
+        paginationMorePostsText        = '{{t "Load More" }}',
+        paginationAllPostsLoadedText   = '{{t "All posts loaded" }}',
+        paginationNextPageNumber       = '{{ pagination.next }}',
+        paginationAvailablePagesNumber = '{{ pagination.pages }}',
+        enablePostModalView            = {{#if @custom.enable_post_modal_view}}true{{else}}false{{/if}};
+  </script>
+
+  {{> design/fonts }}
+
+  {{> design/custom-colors }}
+
+  <link rel="stylesheet" href="{{ asset 'build/marsa.min.css' }}">
+
+  {{> design/preloads }}
+
+  {{ ghost_head }}
+</head>

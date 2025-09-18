@@ -1,0 +1,29 @@
+// ------------------------------------
+// Utilities > Editing
+// ------------------------------------
+
+@use '../mixins/links';
+@use '../mixins/typography';
+
+.c-block,
+.c-card-stat,
+.c-card-testimonial {
+  position: relative;
+}
+
+.c-block-enable-editing {
+  text-align: right;
+  position: absolute;
+  bottom: var(--space-050);
+  right: var(--space-400);
+  right: 0;
+  font-family: monospace;
+  @include typography.font($font-family: monospace, $font-size: 100, $font-weight: regular);
+  padding: var(--space-100);
+  border-radius: var(--border-radius-default);
+  color: var(--color-dark);
+  background: rgba(255, 255, 255, 0.5);
+  text-transform: initial;
+
+  a { @include links.link-underline(); }
+}

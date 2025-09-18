@@ -1,0 +1,12 @@
+// ------------------------------------
+// Utilities > Display
+// ------------------------------------
+
+.u-display-header-hide .c-post__header {
+  display: none;
+}
+
+// Remove the block top padding only if the block is video or image and has full width media
+// .u-display-header-hide:is(.c-block--video, .c-block--image):has(.kg-width-full) {
+//   padding-top: 0;
+// }

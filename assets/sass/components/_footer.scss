@@ -1,0 +1,72 @@
+// ------------------------------------
+// Components > Footer
+// ------------------------------------
+
+@use '../mixins/links';
+@use '../mixins/typography';
+
+.c-footer {
+  position: sticky;
+  top: 100vh; // Fallback for older browsers
+  top: 100dvh; // Dynamic viewport height - sticks to actual viewport bottom on mobile
+  padding: var(--space-600) 0;
+  margin-top: var(--space-1200);
+  background: color-mix(in srgb, var(--color-site-text) 3%, var(--color-site-background));
+  border-top: var(--border-width-default) solid color-mix(in srgb, var(--color-site-text) 10%, transparent);
+}
+
+.c-footer__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  > * + * {
+    margin-top: var(--space-200) !important;
+  }
+}
+
+// Logo
+.c-footer__logo {
+  display: flex;
+  justify-content: center;
+  
+  a {
+    @include typography.font($font-size: 150, $line-height: 1, $font-weight: medium);
+    @include links.link-underline-on-hover();
+  }
+}
+
+// Social Links
+.c-footer-social {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-200);
+}
+
+.c-footer-social__link {
+  @include typography.font($font-size: '100');
+  @include links.link-underline-on-hover();
+}
+
+// Navigation Links
+.c-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-200);
+
+  a {
+    @include typography.font($font-size: '100');
+    @include links.link-underline-on-hover();
+  }
+}
+
+// Copyright
+.c-footer__copy {
+  @include typography.font($font-size: '100');
+  text-align: center;
+  
+  a {
+    @include links.link-underline-on-hover();
+  }
+}

@@ -1,0 +1,22 @@
+// ------------------------------------
+// Editor > Image Card
+// ------------------------------------
+
+.kg-image-card {
+  overflow: visible !important; // Prevent focus outline clipping
+}
+
+.kg-image {
+  margin: auto;
+  border-radius: var(--border-radius-default);
+  
+  // Apply background only when image is not PNG
+  &:not([src$='.png']) {
+    background-color: color-mix(in srgb, var(--color-site-text) 5%, transparent);
+  }
+  
+  // Prevent layout shifts by using Ghost's width/height attributes
+  &[width][height] {
+    aspect-ratio: attr(width) / attr(height);
+  }
+}

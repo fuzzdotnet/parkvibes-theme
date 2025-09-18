@@ -1,0 +1,31 @@
+// ------------------------------------
+// Editor > Callout Card
+// ------------------------------------
+
+@use '../mixins/typography';
+
+.kg-card {
+  &.kg-callout-card {
+    border-radius: var(--border-radius-default);
+    padding: var(--space-250) var(--space-300);
+
+    + .kg-callout-card {
+      margin-top: var(--content-flow);
+    }
+
+    div.kg-callout-emoji {
+      @include typography.font($font-size: 125);
+
+      padding-right: var(--space-200);
+    }
+
+    .kg-callout-text {
+      @include typography.font($font-size: 125);
+      font-family: var(--gh-font-body, var(--font-family-serif));
+    }
+  }
+
+  &.kg-callout-card-white {
+    box-shadow: inset 0 0 0 var(--border-width-default);
+  }
+}

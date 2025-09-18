@@ -1,0 +1,43 @@
+// ------------------------------------
+// Utilities > Colors
+// ------------------------------------
+
+.u-color-text-light {
+  --color-text: var(--color-light);
+  --color-button-text: var(--color-light);
+  --color-button-border: var(--color-light);
+}
+
+.u-color-text-dark {
+  --color-text: var(--color-dark);
+  --color-button-text: var(--color-dark);
+  --color-button-border: var(--color-dark);
+}
+
+.u-color-text-site-accent {
+  --color-text: var(--color-site-accent);
+  --color-button-text: var(--color-site-accent);
+  --color-button-border: var(--color-site-accent);
+}
+
+.u-color-text-tag-accent.u-exist-tag-accent {
+  --color-text: var(--color-tag-accent);
+  --color-button-text: var(--color-tag-accent);
+  --color-button-border: var(--color-tag-accent);
+}
+
+.u-color-bg-dark {
+  background-color: var(--color-tag--block, var(--color-dark));
+}
+
+.u-color-bg-light {
+  background-color: var(--color-tag--block, var(--color-light));
+}
+
+.u-color-bg-site-accent {
+  background-color: var(--color-accent, var(--color-site-background));
+}
+
+.u-color-bg-tag-accent.u-exist-tag-accent {
+  background-color: var(--color-tag-accent, var(--color-site-background));
+}

@@ -1,0 +1,67 @@
+// ------------------------------------
+// Editor > Toggle Card
+// ------------------------------------
+
+@use '../mixins/typography';
+
+div.kg-toggle-card {
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+  border-bottom: var(--border-width-default) var(--border-style-default);
+
+  &:first-of-type {
+    border-top: var(--border-width-default) var(--border-style-default);
+  }
+
+  + .kg-toggle-card { margin-top: 0; }
+
+  .kg-toggle-heading {
+    align-items: center;
+    padding: var(--space-200) 0;
+    font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+  }
+
+  &[data-kg-toggle-state='open'] .kg-toggle-heading {
+    padding-bottom: var(--space-100);
+  }
+
+  h4.kg-toggle-heading-text {
+    @include typography.font($font-size: 125, $line-height: '087', $font-weight: semi-bold);
+  }
+
+  .kg-toggle-card-icon {
+    width: auto;
+    margin-top: 0;
+    padding-right: 0;
+    cursor: pointer;
+  }
+
+  .kg-toggle-heading svg {
+    width: var(--space-300);
+    color: var(--color-text, var(--color-site-text));
+  }
+
+  &[data-kg-toggle-state='open'] .kg-toggle-content {
+    padding-bottom: var(--space-300);
+  }
+
+  &[data-kg-toggle-state] .kg-toggle-content {
+    transition: none;
+
+    > * + * {
+      margin-top: var(--space-200) !important;
+    }
+
+    p, ul {
+      @include typography.font($font-size: 125, $line-height: '087');
+
+      margin-top: 0;
+    }
+
+    p + p {
+      margin-top: var(--space-200);
+    }
+  }
+}

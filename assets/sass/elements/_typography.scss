@@ -1,0 +1,46 @@
+// ------------------------------------
+// Elements > Typography
+// ------------------------------------
+
+@use '../mixins/mq';
+@use '../mixins/typography';
+
+:where(h1, h2, h3) {
+  @include typography.font($text-wrap: balance);
+}
+
+:where(h1, h2, h3, strong) {
+  @include typography.font($font-weight: bold);
+}
+
+:where(h1) {
+  @include typography.font($font-size: 200);
+
+  @include mq.mq($from: desktop) {
+    @include typography.font($font-size: 250);
+  }
+
+  + h2, + h3 {
+    margin-top: var(--space-200);
+  }
+}
+
+:where(h2) {
+  @include typography.font($font-size: 150);
+
+  @include mq.mq($from: desktop) {
+    @include typography.font($font-size: 200);
+  }
+
+  + h3 {
+    margin-top: var(--space-200);
+  }
+}
+
+:where(h3) {
+  @include typography.font($font-size: 125);
+
+  @include mq.mq($from: desktop) {
+    @include typography.font($font-size: 150);
+  }
+}

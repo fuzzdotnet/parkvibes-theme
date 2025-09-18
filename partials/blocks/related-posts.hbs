@@ -1,0 +1,37 @@
+{{!-- Blocks > Related Posts --}}
+
+{{!-- Get posts with any shared tags, prioritizing primary tag --}}
+{{#get "posts" filter="tag:{{primary_tag.slug}}+id:-{{id}}" include="tags" limit="3" as |relatedPosts|}}
+  {{#if relatedPosts}}
+    <section class="c-block c-block--flush c-block--related-posts
+      {{> utilities/general }} {{ post_class }}"
+      {{> utilities/inline-block }}>
+
+      {{> blocks/block-heading staticTitle=(t "Related Posts") size="small"}}
+
+      <div class="o-grid o-grid--3-columns c-related-posts-grid">
+        {{#foreach relatedPosts}}
+          {{> components/card-post }}
+        {{/foreach}}
+      </div>
+    </section>
+  {{else}}
+    {{!-- Fallback: get latest posts if no tag matches --}}
+    {{#get "posts" filter="id:-{{id}}" include="tags" limit="3" as |recentPosts|}}
+      {{#if recentPosts}}
+        <section class="c-block c-block--flush c-block--related-posts
+          {{> utilities/general }} {{ post_class }}"
+          {{> utilities/inline-block }}>
+
+          {{> blocks/block-heading staticTitle=(t "Latest Posts") size="small"}}
+
+          <div class="o-grid o-grid--3-columns c-related-posts-grid">
+            {{#foreach recentPosts}}
+              {{> components/card-post }}
+            {{/foreach}}
+          </div>
+        </section>
+      {{/if}}
+    {{/get}}
+  {{/if}}
+{{/get}}

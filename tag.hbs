@@ -1,0 +1,72 @@
+{{!< default}}
+
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+
+{{!-- Use the main tag block for primary tag info --}}
+{{#tag}}
+  <header class="c-page-head c-page-head--tag-archive" data-current-tag-slug="{{ slug }}">
+    <div class="c-page-head__inner">
+      {{!-- Dropdown structure always present --}}
+      <details class="c-tag-dropdown" {{#if accent_color}} style="--color-tag-accent: {{ accent_color }};" {{/if}}>
+        <summary class="c-tag c-tag-dropdown__summary js-contrast">
+          {{!-- Add tag feature image --}}
+          {{#if feature_image}}
+            <span class="c-tag__image-wrapper">
+              <img class="c-tag__image c-tag-dropdown__summary-image" 
+                   src="{{ img_url feature_image size='tag-image-small' format='webp' }}"
+                   alt="{{ name }}" fetchpriority="high">
+            </span>
+          {{/if}}
+          {{!-- Display current tag name with count --}}
+          {{#get "tags" filter="slug:{{slug}}" include="count.posts" as |currentTag|}}
+            {{#if currentTag}}
+              <span class="c-tag__name c-tag-dropdown__current-name">{{ currentTag.[0].name }} <small class="u-hidden">({{ currentTag.[0].count.posts }})</small></span>
+            {{else}}
+              <span class="c-tag__name c-tag-dropdown__current-name">{{ name }}</span>
+            {{/if}}
+          {{/get}}
+          {{!-- Chevron icon --}}
+          {{> icons/chevron-down }}
+        </summary>
+        {{!-- Fetch all tags and always render the list --}}
+        {{#get "tags" limit="50" include="count.posts" as |tags|}}
+          <ul class="c-tag-dropdown__list u-plain-list">
+            {{!-- Latest option (first item) --}}
+            <li>
+              <a href="/latest/" class="c-tag-dropdown__link c-tag-dropdown__latest">
+                <span class="c-tag-dropdown__name">{{t "Latest Posts"}}</span>
+              </a>
+            </li>
+            
+            {{!-- All tags --}}
+            {{#foreach tags}}
+              <li>
+                {{!-- Active state will be added by JavaScript --}}
+                <a href="/tag/{{ slug }}/" class="c-tag-dropdown__link" {{#if accent_color}} style="--color-tag-accent: {{ accent_color }};" {{else}} style="--color-tag-accent: initial;" {{/if}}>
+                  {{#if feature_image}}
+                     <span class="c-tag-dropdown__image-wrapper">
+                       <img class="c-tag-dropdown__image" 
+                            src="{{ img_url feature_image size='tag-image-small' format='webp' }}" 
+                            alt="{{ name }}" loading="lazy">
+                     </span>
+                  {{/if}}
+                  <span class="c-tag-dropdown__name">{{ name }}</span>
+                  <small class="c-tag-dropdown__count">({{ count.posts }} {{#match count.posts "=" 1}}{{t "post"}}{{else}}{{t "posts"}}{{/match}})</small>
+                </a>
+              </li>
+            {{/foreach}}
+          </ul>
+        {{/get}} {{!-- End fetching all tags --}}
+      </details>
+
+      {{!-- Display description directly from primary context --}}
+      {{#if description}}
+        <p class="c-page-head__description u-font-subHeading">{{ description }}</p>
+      {{/if}}
+    </div>
+  </header>
+{{/tag}}
+
+{{> components/loop }}
+
+{{ pagination }}

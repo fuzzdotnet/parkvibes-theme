@@ -1,0 +1,77 @@
+{{!-- Blocks > Latest Posts --}}
+
+{{#match @custom.latest_posts "Show 6 posts (Default)"}}
+  {{#get "posts" include="tags" limit="6"}}
+    {{#if posts}}
+      <section class="c-block c-block--latest-posts
+        {{> utilities/general }} {{ post_class }}"
+        {{> utilities/inline-block }}>
+
+        {{> blocks/block-heading staticTitle=(t "Latest Posts") size="small"}}
+
+        <div class="o-grid o-grid--3-columns">
+          {{#foreach posts}}
+            {{> components/card-post }}
+          {{/foreach}}
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+{{/match}}
+
+{{#match @custom.latest_posts "Show 6 posts (exclude featured)"}}
+  {{#get "posts" filter="featured:false" include="tags" limit="6"}}
+    {{#if posts}}
+      <section class="c-block c-block--latest-posts
+        {{> utilities/general }} {{ post_class }}"
+        {{> utilities/inline-block }}>
+
+        {{> blocks/block-heading staticTitle=(t "Latest Posts") size="small"}}
+
+        <div class="o-grid o-grid--3-columns">
+          {{#foreach posts}}
+            {{> components/card-post }}
+          {{/foreach}}
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+{{/match}}
+
+{{#match @custom.latest_posts "Show 9 posts"}}
+  {{#get "posts" include="tags" limit="9"}}
+    {{#if posts}}
+      <section class="c-block c-block--latest-posts
+        {{> utilities/general }} {{ post_class }}"
+        {{> utilities/inline-block }}>
+
+        {{> blocks/block-heading staticTitle=(t "Latest Posts") size="small"}}
+
+        <div class="o-grid o-grid--3-columns">
+          {{#foreach posts}}
+            {{> components/card-post }}
+          {{/foreach}}
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+{{/match}}
+
+{{#match @custom.latest_posts "Show 9 posts (exclude featured)"}}
+  {{#get "posts" filter="featured:false" include="tags" limit="9"}}
+    {{#if posts}}
+      <section class="c-block c-block--latest-posts
+        {{> utilities/general }} {{ post_class }}"
+        {{> utilities/inline-block }}>
+
+        {{> blocks/block-heading staticTitle=(t "Latest Posts") size="small"}}
+
+        <div class="o-grid o-grid--3-columns">
+          {{#foreach posts}}
+            {{> components/card-post }}
+          {{/foreach}}
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+{{/match}}

@@ -1,0 +1,19 @@
+// ------------------------------------
+// Components > Timestamp
+// ------------------------------------
+
+@use '../mixins/typography';
+
+.c-timestamp {
+  @include typography.font($font-size: '100', $line-height: '1', $uppercase: true, $letter-spacing: base);
+}
+
+.c-timestamp--post {
+  display: block;
+  text-align: center;
+  font-family: var(--gh-font-body, var(--font-family-serif));
+}
+
+.c-timestamp--archive {
+  @include typography.font($font-size: '087');
+}

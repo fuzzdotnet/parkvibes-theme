@@ -1,0 +1,17 @@
+// ------------------------------------
+// Components > Accessibility (a11y)
+// ------------------------------------
+
+.c-skip {
+  position: absolute;
+  top: calc(var(--space-1200) * -1);
+  left: var(--space-400);
+  padding: var(--space-050) var(--space-200);
+  color: var(--color-header-banner-text);
+  background-color: var(--color-header-banner-background);
+
+  &:focus {
+    z-index: 10;
+    top: var(--space-200);
+  }
+}

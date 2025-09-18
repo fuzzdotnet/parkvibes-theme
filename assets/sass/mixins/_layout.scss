@@ -1,0 +1,26 @@
+// ------------------------------------
+// Mixins > Layout
+// ------------------------------------
+
+@mixin kg-width-wide() {
+  max-width: calc(var(--line-length) * 1.5);
+  width: calc(100vw - var(--grid-margin) * 1.5);
+}
+
+@mixin kg-width-full() {
+  width: 100vw;
+}
+
+@mixin kg-width-wide-modal() {
+  width: 75cqw;
+}
+
+@mixin kg-width-full-modal() {
+  width: 100cqw;
+}
+
+@mixin nested-radius($radius-outer: null, $padding: null) {
+  --border-radius-outer: #{$radius-outer};
+  --padding: #{$padding};
+  --border-radius-inner: calc(var(--border-radius-outer) - var(--padding));
+}

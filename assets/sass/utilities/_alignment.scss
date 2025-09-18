@@ -1,0 +1,13 @@
+// ------------------------------------
+// Utilities > Alignment
+// ------------------------------------
+
+// Text alignment
+.u-text-align-center {
+  text-align: center;
+
+  // If the button is aligned left, center it
+  .kg-align-left {
+    justify-content: center;
+  }
+}

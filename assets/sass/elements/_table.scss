@@ -1,0 +1,37 @@
+// ------------------------------------
+// Elements > Table
+// ------------------------------------
+
+@use '../mixins/typography';
+
+table {
+  @include typography.font($font-family: sans-serif, $font-size: 100);
+
+  width: 100%;
+  max-width: 100%;
+
+  caption {
+    padding: var(--space-200);
+    border-style: var(--border-style-default);
+    border-width: var(--border-width-default) var(--border-width-default) 0 var(--border-width-default);
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: var(--space-200);
+    white-space: nowrap;
+    border: var(--border-width-default) var(--border-style-default);
+  }
+
+  tbody + tbody {
+    border-top: var(--border-width-default) var(--border-style-default);
+  }
+}
+
+.responsive-table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  word-break: initial;
+}

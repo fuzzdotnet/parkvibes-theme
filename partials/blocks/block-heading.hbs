@@ -1,0 +1,16 @@
+{{!-- Block Heading - Handles both static and dynamic block headings with optional descriptions --}}
+
+<div class="o-grid o-grid--75 {{customWidthClass}}">
+  <div class="c-block__headline">
+    {{#if staticTitle}}
+      {{!-- Static heading for section headers (Latest Posts, Featured Posts, etc.) --}}
+      <h2 class="c-block__headline-title{{#if size}}--{{size}}{{/if}}">{{ staticTitle }}</h2>
+    {{else}}
+      {{!-- Dynamic heading from content (testimonials, galleries, etc.) --}}
+      <h2 class="c-block__headline-title">{{ title }}</h2>
+      {{#if custom_excerpt}}
+        <p class="c-block__headline-excerpt">{{ custom_excerpt }}</p>
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

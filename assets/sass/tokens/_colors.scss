@@ -1,0 +1,195 @@
+// ------------------------------------
+// Tokens > Colors
+// ------------------------------------
+
+:root {
+  --color-light: #FFF;
+  --color-site-accent: var(--ghost-accent-color);
+  --color-background-transparent: rgba(0, 0, 0, 0.2);
+}
+
+// Static color schemes - dynamic custom scheme in custom-colors.hbs
+
+// 1. Marsa Classic (Default) - Contemporary lavender
+[data-color-scheme="Marsa Classic (Default)"] {
+  --color-site-background: #FDFCFF;
+  --color-site-text: #2D1B3D;
+  --color-header-banner-background: #4C1D95;
+  --color-header-banner-text: #FFFFFF;
+}
+
+// 2. Lavender Crimson - Sophisticated lavender with bold crimson accent
+[data-color-scheme="Lavender Crimson"] {
+  --color-site-background: #F8F8FC;
+  --color-site-text: #44397A;
+  --color-header-banner-background: #D6D2EA;
+  --color-header-banner-text: #B70517;
+}
+
+// 3. Cosmic Purple - Modern tech/space
+[data-color-scheme="Cosmic Purple"] {
+  --color-site-background: #FAF5FF;
+  --color-site-text: #581C87;
+  --color-header-banner-background: #7C3AED;
+  --color-header-banner-text: #FAF5FF;
+}
+
+// 4. Blush Elegance - Soft romantic pink
+[data-color-scheme="Blush Elegance"] {
+  --color-site-background: #FDF2F8;
+  --color-site-text: #831843;
+  --color-header-banner-background: #BE185D;
+  --color-header-banner-text: #FFFFFF;
+}
+
+// 5. Rose Burgundy - Warm vintage romance with sophisticated burgundy tones
+[data-color-scheme="Rose Burgundy"] {
+  --color-site-background: #FAEDEC;
+  --color-site-text: #4D0F10;
+  --color-header-banner-background: #A42A2C;
+  --color-header-banner-text: #E1DCD9;
+}
+
+// 6. Coral Red - Warm coral accent
+[data-color-scheme="Coral Red"] {
+  --color-site-background: #FFFFFF;
+  --color-site-text: #330100;
+  --color-header-banner-background: #FFFEEF;
+  --color-header-banner-text: #F2100D;
+}
+
+// 7. Swiss Vibrant - Bold Swiss design with classic red accent
+[data-color-scheme="Swiss Vibrant"] {
+  --color-site-background: #FFFFFF;
+  --color-site-text: #000000;
+  --color-header-banner-background: #E60012;
+  --color-header-banner-text: #FFFFFF;
+}
+
+// 8. Vibrant Orange - Bold energetic orange
+[data-color-scheme="Vibrant Orange"] {
+  --color-site-background: #FFF7ED;
+  --color-site-text: #9A3412;
+  --color-header-banner-background: #EA580C;
+  --color-header-banner-text: #FFFFFF;
+}
+
+// 9. Terracotta Dream - Mediterranean warmth
+[data-color-scheme="Terracotta Dream"] {
+  --color-site-background: #FEF3E7;
+  --color-site-text: #5C2E05;
+  --color-header-banner-background: #DC6B3F;
+  --color-header-banner-text: #FEF3E7;
+}
+
+// 10. Autumn Spice - Warm earthy tones with vibrant orange accent
+[data-color-scheme="Autumn Spice"] {
+  --color-site-background: #EEEDEB;
+  --color-site-text: #3C1B0B;
+  --color-header-banner-background: #3C1B0B;
+  --color-header-banner-text: #FD8143;
+}
+
+// 11. Swiss Golden - Swiss-inspired vibrant yellow
+[data-color-scheme="Swiss Golden"] {
+  --color-site-background: #FFFBEB;
+  --color-site-text: #451A03;
+  --color-header-banner-background: #F59E0B;
+  --color-header-banner-text: #451A03;
+}
+
+// 12. Bricolage Inspired - Avant-garde contrast with artistic sophistication
+[data-color-scheme="Bricolage Inspired"] {
+  --color-site-background: #F4E4C1;
+  --color-site-text: #1C0A02;
+  --color-header-banner-background: #1C0A02;
+  --color-header-banner-text: #F4E4C1;
+}
+
+// 13. Professional Blue - Corporate excellence
+[data-color-scheme="Professional Blue"] {
+  --color-site-background: #FDFDFF;
+  --color-site-text: #1E3A8A;
+  --color-header-banner-background: #1D4ED8;
+  --color-header-banner-text: #FFFFFF;
+}
+
+// 14. Ocean Mist - Coastal serenity
+[data-color-scheme="Ocean Mist"] {
+  --color-site-background: #F0F9FF;
+  --color-site-text: #0C4A6E;
+  --color-header-banner-background: #0891B2;
+  --color-header-banner-text: #F0F9FF;
+}
+
+// 15. Teal Breeze - Fresh teal minimalism
+[data-color-scheme="Teal Breeze"] {
+  --color-site-background: #F0FDFA;
+  --color-site-text: #134E4A;
+  --color-header-banner-background: #0F766E;
+  --color-header-banner-text: #F0FDFA;
+}
+
+// 16. Deep Forest - Rich dark green luxury
+[data-color-scheme="Deep Forest"] {
+  --color-site-background: #F7F9F7;
+  --color-site-text: #1B2E1B;
+  --color-header-banner-background: #0D4F0D;
+  --color-header-banner-text: #E8F5E8;
+}
+
+// 17. Sage Wisdom - Earthy beige with forest green depth
+[data-color-scheme="Sage Wisdom"] {
+  --color-site-background: #FAF8F5;
+  --color-site-text: #2A3F2A;
+  --color-header-banner-background: #E8DDD4;
+  --color-header-banner-text: #0B5D1E;
+}
+
+// 18. Neon Forest - Deep forest with electric lime accent
+[data-color-scheme="Neon Forest"] {
+  --color-site-background: #F0FFF4;
+  --color-site-text: #0A3A0A;
+  --color-header-banner-background: #053E05;
+  --color-header-banner-text: #C4FF00;
+}
+
+// 19. Botanical Bloom - Artistic lavender with forest green contrast
+[data-color-scheme="Botanical Bloom"] {
+  --color-site-background: #FFFAFF;
+  --color-site-text: #4C364C;
+  --color-header-banner-background: #252D14;
+  --color-header-banner-text: #FEBDFE;
+}
+
+// 20. Desert Sage - Southwestern vibes
+[data-color-scheme="Desert Sage"] {
+  --color-site-background: #FEFCE8;
+  --color-site-text: #422006;
+  --color-header-banner-background: #A16207;
+  --color-header-banner-text: #FEFCE8;
+}
+
+// 21. Nordic Frost - Scandinavian minimalism
+[data-color-scheme="Nordic Frost"] {
+  --color-site-background: #F8FAFC;
+  --color-site-text: #475569;
+  --color-header-banner-background: #E2E8F0;
+  --color-header-banner-text: #1E293B;
+}
+
+// 22. Charcoal Rose - Modern dark with dusty rose warmth
+[data-color-scheme="Charcoal Rose"] {
+  --color-site-background: #FAFAFA;
+  --color-site-text: #374151;
+  --color-header-banner-background: #1F2937;
+  --color-header-banner-text: #FFD4D4;
+}
+
+// 23. Midnight Luxury - Premium dark mode
+[data-color-scheme="Midnight Luxury"] {
+  --color-site-background: #0A0A0A;
+  --color-site-text: #E5E5E5;
+  --color-header-banner-background: #262626;
+  --color-header-banner-text: #D4AF37;
+}

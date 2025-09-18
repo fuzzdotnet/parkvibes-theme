@@ -1,0 +1,13 @@
+// ------------------------------------
+// Components > Reading Time
+// ------------------------------------
+
+@use '../mixins/typography';
+
+.c-reading-time {
+  @include typography.font($font-size: '087', $line-height: '1', $uppercase: true, $letter-spacing: base);
+}
+
+.c-reading-time--post {
+  font-family: var(--gh-font-body, var(--font-family-serif));
+}

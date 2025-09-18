@@ -1,0 +1,28 @@
+// ------------------------------------
+// Elements > Body
+// ------------------------------------
+
+@use '../mixins/typography';
+
+html {
+  // Global smooth scrolling for better UX
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--gh-font-body, var(--font-family-sans-serif));
+  @include typography.font($font-size: 125, $font-weight: regular);
+
+  // Flexbox layout for sticky footer
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Fallback for older browsers
+  min-height: 100dvh; // Dynamic viewport height - ensures footer stays at bottom on mobile
+
+  direction: ltr;
+  color: var(--color-site-text);
+  background-color: var(--color-site-background);
+
+  -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}

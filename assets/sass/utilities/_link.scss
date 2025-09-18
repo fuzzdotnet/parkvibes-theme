@@ -1,0 +1,9 @@
+// ------------------------------------
+// Utilities > Links
+// ------------------------------------
+
+@use '../mixins/links';
+
+.u-link {
+  @include links.link-underline();
+}

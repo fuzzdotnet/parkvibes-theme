@@ -1,0 +1,15 @@
+// ------------------------------------
+// Editor > Embed Card
+// ------------------------------------
+
+.kg-embed-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: var(--ratio-16x9);
+  }
+}

@@ -1,0 +1,83 @@
+// ------------------------------------
+// Blocks > Tag Sections
+// ------------------------------------
+
+@use '../mixins/mq';
+@use '../mixins/links';
+@use '../mixins/typography';
+
+.c-block--tag-section {
+  &__content {
+    padding: var(--space-400) var(--space-200) var(--space-200);
+    border-radius: var(--border-radius-default);
+
+    @include mq.mq($from: desktop) {
+      padding: var(--space-400);
+    }
+  }
+
+  // Contained content wrapper with accent color background
+  &__content[style*="--color-tag-accent"] {
+    background: var(--color-tag-accent);
+    
+    .c-card-post:not([style*="--color-tag-accent"]) {
+      border: 0;
+    }
+  }
+
+  // Content wrapper without accent color gets border
+  &__content:not([style*="--color-tag-accent"]) {
+    border: var(--border-width-default) var(--border-style-default);
+
+    .c-card-post {
+      border: var(--border-width-default) var(--border-style-default);
+    }
+  }
+
+  &__content.js-contrast {
+    .c-block--tag-section__title,
+    .c-block--tag-section__title-link {
+      color: var(--color-on-accent, var(--color-site-text));
+    }
+  }
+
+  &__header {
+    margin-bottom: var(--space-200);
+  }
+
+  &__header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-100);
+  }
+
+  &__title {
+    @include typography.responsive-font-size-300();
+    font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+  }
+
+  &__title-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-100);
+
+    @include links.link-underline-on-hover();
+  }
+  
+  &__title-image-wrapper {
+    overflow: hidden;
+    flex-shrink: 0;
+    height: var(--space-600);
+    width: var(--space-600);
+    border-radius: var(--border-radius-pill);
+    background-color: color-mix(in srgb, var(--color-site-text) 5%, transparent);
+  }
+  
+  &__title-image {
+    object-fit: cover;
+    height: var(--space-600);
+    width: var(--space-600);
+    border-radius: var(--border-radius-pill);
+  }
+}

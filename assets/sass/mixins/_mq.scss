@@ -1,0 +1,12 @@
+// ------------------------------------
+// Mixins > Media Queries (sass-mq wrapper)
+// ------------------------------------
+
+// This file wraps the sass-mq npm package to provide clean imports
+// throughout the theme. Instead of using the full node_modules path
+// in every file, we centralize it here.
+
+@use '../../node_modules/sass-mq/mq' as *;
+
+// Re-export everything from sass-mq
+@forward '../../node_modules/sass-mq/mq';

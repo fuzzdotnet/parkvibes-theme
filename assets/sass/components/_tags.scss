@@ -1,0 +1,261 @@
+// ------------------------------------
+// Components > Tags
+// ------------------------------------
+
+@use '../mixins/typography';
+@use '../mixins/interaction';
+
+.c-tag {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: var(--space-100);
+  box-shadow: inset 0 0 0 var(--border-width-default);
+  background-color: var(--color-tag-accent);
+  border-radius: var(--border-radius-pill);
+  color: var(--color-site-text);
+  @include typography.responsive-font-size-175();
+  @include typography.font($font-weight: medium);
+  transition: box-shadow var(--motion-duration-fast) var(--motion-ease),
+              transform 150ms var(--motion-ease);
+  
+  @include interaction.attention() {
+    box-shadow: inset 0 0 0 var(--border-width-default), 0 var(--space-100) var(--space-200) color-mix(in srgb, var(--color-site-text) 10%, transparent);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:not(:has(img)) {
+    padding-left: var(--space-300);
+    padding-right: var(--space-300);
+  }
+
+  &:has(img) {
+    padding-right: var(--space-300);
+  }
+
+  &:has(.c-tag-dropdown__arrow) {
+    padding-right: var(--space-200);
+  }
+  
+  &__image-wrapper {
+    flex-shrink: 0;
+    display: block;
+    overflow: hidden;
+    height: var(--space-600);
+    width: var(--space-600);
+    margin-right: var(--space-150);
+    border-radius: var(--border-radius-pill);
+    background-color: color-mix(in srgb, var(--color-site-text) 5%, transparent);
+  }
+
+  &__image {
+    display: block;
+    object-fit: cover;
+    height: var(--space-600);
+    width: var(--space-600);
+    border-radius: var(--border-radius-pill);
+  }
+}
+
+.c-tag-dropdown {
+  position: relative;
+}
+
+.c-tag-dropdown__summary {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.c-tag-dropdown__summary.js-contrast {
+  color: var(--color-on-accent, var(--color-site-text));
+}
+
+.c-tag-dropdown__summary::-webkit-details-marker {
+  display: none;
+}
+
+.c-tag-dropdown__arrow {
+  height: var(--space-500);
+  width: var(--space-600);
+  transition: transform var(--motion-duration-medium) var(--motion-ease);
+}
+
+.c-tag-dropdown[open] > .c-tag-dropdown__summary .c-tag-dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+.c-tag-dropdown__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background-color: var(--color-site-background);
+  border-radius: var(--border-radius-default);
+  margin-top: var(--space-050);
+  min-width: 100%;
+  box-shadow: 0 var(--space-100) var(--space-200) color-mix(in srgb, var(--color-site-text) 25%, transparent);
+  transform: translateY(calc(var(--space-100) * -1));
+  opacity: 0;
+  visibility: hidden;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-out),
+              opacity var(--motion-duration-fast) var(--motion-ease-out),
+              visibility 0s var(--motion-duration-fast);
+  
+  // Add scrolling for long lists - dynamic height to prevent touching bottom
+  // Uses available space from dropdown position to viewport bottom with padding
+  max-height: calc(90vh - var(--space-1200)); // Fallback for older browsers
+  max-height: calc(90dvh - var(--space-1200)); // Dynamic viewport height for mobile
+  max-height: var(--dropdown-max-height, calc(90dvh - var(--space-1200)));
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+  // Prevent scroll chaining to parent when reaching boundaries
+  overscroll-behavior: contain;
+  
+  // Custom scrollbar styling using theme tokens
+  &::-webkit-scrollbar {
+    width: var(--space-100);
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-site-text) 20%, transparent);
+    border-radius: var(--border-radius-small);
+    
+    &:hover {
+      background: color-mix(in srgb, var(--color-site-text) 30%, transparent);
+    }
+  }
+
+  // Add border separators to list items
+  li:not(:last-child) {
+    border-bottom: var(--border-width-default) var(--border-style-default) color-mix(in srgb, var(--color-site-text) 15%, transparent);
+  }
+}
+
+// State when details[open]
+.c-tag-dropdown[open] > .c-tag-dropdown__list {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-out),
+              opacity var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.c-tag-dropdown__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-100); // Consistent spacing between all child elements
+  padding: var(--space-200) var(--space-300);
+  color: var(--color-site-text);
+  text-decoration: none;
+  white-space: nowrap;
+  font-weight: var(--font-weight-medium);
+  
+  // Image styling is defined separately below
+  
+  // Add consistent left padding for links without images (except Latest Posts)
+  &:not(:has(.c-tag-dropdown__image-wrapper)):not(.c-tag-dropdown__latest) {
+    padding-left: calc(var(--space-300) + 1.5lh + var(--space-100)); // Space for missing image + gap
+  }
+
+  @include interaction.attention() {
+    color: var(--color-site-background);
+    background-color: var(--color-site-text);
+  }
+
+  .c-tag-dropdown__list li:first-child & {
+    border-top-left-radius: calc(var(--border-radius-default) - 1px);
+    border-top-right-radius: calc(var(--border-radius-default) - 1px);
+  }
+
+  .c-tag-dropdown__list li:last-child & {
+    border-bottom-left-radius: calc(var(--border-radius-default) - 1px);
+    border-bottom-right-radius: calc(var(--border-radius-default) - 1px);
+  }
+
+  // Current tag in dropdown
+  &[aria-current='page'] {
+    .c-tag-dropdown__name {
+      @include interaction.link-underline();
+      @include interaction.link-underline-on-hover();
+    }
+  }
+}
+
+.c-tag-dropdown__name {
+  flex-grow: 1; // Allow name to take available space
+}
+
+.c-tag-dropdown__count {
+  @include typography.font($font-size: '087');
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0; // Prevent count from shrinking
+  margin-left: auto; // Push to the right
+}
+
+.c-tag-dropdown__summary small {
+  opacity: 0.7;
+  font-weight: var(--font-weight-regular);
+}
+
+// ------------------------------------
+// Tag Dropdown Image Elements
+// ------------------------------------
+.c-tag-dropdown__image-wrapper {
+  overflow: hidden;
+  flex-shrink: 0;
+  height: var(--space-600);
+  width: var(--space-600);
+  margin-right: var(--space-150);
+  border-radius: var(--border-radius-pill);
+  outline: var(--space-050) solid var(--color-tag-accent);
+  background-color: color-mix(in srgb, var(--color-site-text) 5%, transparent);
+}
+
+.c-tag-dropdown__image {
+  object-fit: cover;
+  display: block;
+  height: var(--space-600);
+  width: var(--space-600);
+  border-radius: var(--border-radius-pill);
+}
+
+// ------------------------------------
+// Single Tag State
+// ------------------------------------
+.c-tag-dropdown.is-single-tag {
+  // Hide the arrow when only one tag
+  .c-tag-dropdown__arrow {
+    display: none;
+  }
+
+  // Make the summary look non-interactive & is same padding is applied to the tag
+  .c-tag-dropdown__summary {
+    cursor: inherit;
+    padding: var(--space-200) var(--space-300);
+  }
+
+  // Disable transform and box-shadow animation for single tag
+  .c-tag {
+    @include interaction.attention() {
+      opacity: 1;
+      transform: none;
+      box-shadow: inset 0 0 0 var(--border-width-default);
+    }
+  }
+
+  // Hide the default browser marker for <details> just in case
+  > summary::marker,
+  > summary::-webkit-details-marker {
+      display: none;
+  }
+}

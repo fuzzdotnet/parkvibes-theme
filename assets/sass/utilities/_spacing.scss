@@ -1,0 +1,31 @@
+// ------------------------------------
+// Utilities > Spacing
+// ------------------------------------
+
+.u-mr-100 {
+  margin-right: var(--space-100);
+}
+
+.u-mt-200 {
+  margin-top: var(--space-200);
+}
+
+.u-mb-200 {
+  margin-bottom: var(--space-200);
+}
+
+.u-space-small {
+  --block-padding: var(--block-space-small);
+}
+
+.u-space-large {
+  --block-padding: var(--block-space-large);
+}
+
+.u-space-x-large {
+  --block-padding: var(--block-space-x-large);
+}
+
+.u-space-2x-large {
+  --block-padding: var(--block-space-2x-large);
+}

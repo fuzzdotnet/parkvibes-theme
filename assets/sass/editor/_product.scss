@@ -1,0 +1,38 @@
+// ------------------------------------
+// Editor > Product Card
+// ------------------------------------
+
+@use '../mixins/typography';
+@use '../components/button';
+
+.c-content .kg-product-card {
+  .kg-product-card-container {
+    color: var(--color-site-text);
+    border-radius: var(--border-radius-default);
+    padding: var(--space-250) var(--space-300);
+    background-color: transparent;
+    box-shadow: inset 0 0 0 var(--border-width-default) var(--color-site-text);
+  }
+
+  h4.kg-product-card-title {
+    font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+    @include typography.font($font-size: 150, $line-height: '087', $font-weight: semi-bold);
+  }
+
+  .kg-product-card-rating-star {
+    text-align: right;
+    width: var(--space-300);
+    height: var(--space-400);
+  }
+
+  .kg-product-card-description * {
+    opacity: 1;
+    @include typography.font($font-family: sans-serif, $font-size: 125, $line-height: '087');
+  }
+
+  .kg-product-card-button {
+    @extend .c-btn;
+
+    width: 100%;
+  }
+}

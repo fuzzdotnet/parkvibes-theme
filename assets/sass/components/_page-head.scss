@@ -1,0 +1,16 @@
+// ------------------------------------
+// Components > Page Head
+// ------------------------------------
+
+.c-page-head {
+  padding: var(--space-1200) var(--grid-margin);
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-200);
+    max-width: var(--line-length);
+    margin: 0 auto;
+    text-align: center;
+  }
+}

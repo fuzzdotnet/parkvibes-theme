@@ -1,0 +1,9 @@
+// ------------------------------------
+// Elements > hr
+// ------------------------------------
+
+hr {
+  border: 0;
+  height: auto;
+  border-top: var(--border-width-default) var(--border-style-default);
+}

@@ -1,0 +1,152 @@
+// ------------------------------------
+// Components > Archive
+// ------------------------------------
+
+// https://www.htmltables.io/blog/how-to-make-an-html-table-with-rounded-corners
+
+@use '../mixins/links';
+@use '../mixins/typography';
+@use '../mixins/interaction';
+
+.c-archive-wrap {
+  overflow-x: auto;
+}
+
+.c-archive-table {
+  width: 100%;
+  overflow: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  td, th {
+    border: 0;
+  }
+
+  th, td {
+    border-bottom: var(--border-width-default) var(--border-style-default) var(--color-site-text);
+    border-right: var(--border-width-default) var(--border-style-default) var(--color-site-text);
+  }
+
+  tr td:first-child, 
+  tr th:first-child {
+    border-left: var(--border-width-default) var(--border-style-default) var(--color-site-text);
+  }
+
+  tr th {
+    border-top: var(--border-width-default) var(--border-style-default) var(--color-site-text);
+    border-bottom-width: calc(var(--border-width-default) * 2);
+    @include typography.font($font-size: '087', $uppercase: true, $letter-spacing: 'tiny');
+  }
+
+  tr:first-child th:first-child {
+    border-top-left-radius: var(--border-radius-default);
+  }
+
+  tr:first-child th:last-child {
+    border-top-right-radius: var(--border-radius-default);
+  }
+
+  tr:last-child td:first-child {
+    border-bottom-left-radius: var(--border-radius-default);
+  }
+
+  tr:last-child td:last-child {
+    border-bottom-right-radius: var(--border-radius-default);
+    
+    .c-archive-table__image {
+      border-bottom-right-radius: var(--border-radius-default);
+    }
+  }
+
+  &__header {
+    text-align: left;
+    position: relative;
+    padding: var(--space-150) var(--space-200);
+    
+    &--sortable {
+      cursor: pointer;
+      padding-right: var(--space-400);
+      transition: background-color var(--motion-duration-fast) var(--motion-ease);
+      
+      &:hover {
+        background-color: color-mix(in srgb, var(--color-site-text) 5%, transparent);
+      }
+      
+      // Active state for sorted columns
+      &.is-sorted-asc,
+      &.is-sorted-desc {
+        background-color: color-mix(in srgb, var(--color-site-text) 8%, transparent);
+      }
+      
+      &::after {
+        content: "↕";
+        position: absolute;
+        right: var(--space-200);
+      }
+      
+      &.is-sorted-asc::after {
+        content: "↑";
+        opacity: 1;
+      }
+      
+      &.is-sorted-desc::after {
+        content: "↓";
+        opacity: 1;
+      }
+    }
+  }
+  
+  &__cell {
+    padding: var(--space-150) var(--space-200);
+    vertical-align: middle;
+    
+    &--image {
+      width: var(--space-800-fixed);
+      min-width: var(--space-800-fixed);
+      text-align: center;
+      padding: 0;
+    }
+  }
+  
+  &__title-link {
+    display: block;
+    padding: var(--space-250) var(--space-200);
+    margin: calc(var(--space-150) * -1) calc(var(--space-200) * -1);
+    @include typography.font($font-weight: bold);
+    
+    @include links.link-underline-on-hover();
+  }
+  
+  &__image-wrapper {
+    width: var(--space-800-fixed);
+    height: var(--space-800-fixed);
+    border-radius: var(--border-radius-small);
+    background-color: color-mix(in srgb, var(--color-site-text) 5%, transparent);
+  }
+  
+  &__image {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  // Row styling only for tbody (not thead)
+  tbody &__row {
+    // Zebra striping for better readability
+    &:nth-child(even) {
+      background-color: color-mix(in srgb, var(--color-site-text) 3%, transparent);
+    }
+    
+    &:hover {
+      color: var(--color-site-background);
+      background-color: var(--color-site-text);
+    }
+  }
+  
+  &__tags {
+    a {
+      @include links.link-underline-on-hover();
+    }
+  }
+}

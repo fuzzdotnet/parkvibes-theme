@@ -1,0 +1,27 @@
+// ------------------------------------
+// Editor > Blockquote Card
+// ------------------------------------
+
+@use '../mixins/typography';
+
+blockquote {
+  &:not([class]) {
+    padding-left: .5lh;
+    border-left: var(--space-050) var(--border-style-default);
+  }
+}
+
+.kg-blockquote-alt {
+  @include typography.responsive-font-size-250();
+
+  text-align: center;
+  hanging-punctuation: first allow-end last;
+
+  &::before {
+    content: open-quote;
+  }
+
+  &::after {
+    content: close-quote;
+  }
+}

@@ -1,0 +1,92 @@
+// ------------------------------------
+// Utilities > Typography
+// ------------------------------------
+
+@use '../tokens/typography';
+@use '../mixins/typography' as typography-mixins;
+
+// Size
+
+.u-font-size-100 {
+  @include typography-mixins.font($font-size: 100);
+}
+
+.u-font-size-150 {
+  @include typography-mixins.font($font-size: 150);
+}
+
+// Weight
+
+@each $weight-name, $weight-value in typography.$font-weight {
+  .u-font-weight-#{$weight-name} {
+    @include typography-mixins.font($font-weight: #{$weight-name});
+  }
+}
+
+// Style
+
+.u-font-style-italic {
+  @include typography-mixins.font($font-style: italic);
+}
+
+.u-text-uppercase {
+  @include typography-mixins.font($uppercase: true);
+}
+
+// Style
+
+.u-font-heading {
+  @include typography-mixins.responsive-font-size-400();
+  font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+  @include typography-mixins.font($font-weight: bold, $letter-spacing: negative);
+}
+
+.u-font-subHeading {
+  @include typography-mixins.font-excerpt();
+  font-family: var(--gh-font-body, var(--font-family-serif));
+}
+
+// Block text utilities (merged from _text.scss)
+
+// Size
+.u-text-size-large { // 40px
+  @include typography-mixins.responsive-font-size-250();
+}
+
+.u-text-size-x-large { // 56px
+  @include typography-mixins.responsive-font-size-300();
+}
+
+.u-text-size-2x-large { // 72px
+  @include typography-mixins.responsive-font-size-450();
+}
+
+.u-text-size-3x-large { // 96px
+  @include typography-mixins.responsive-font-size-600();
+}
+
+.u-text-size-6x-large { // 192px
+  @include typography-mixins.responsive-font-size-1200();
+}
+
+// Weight
+.u-text-weight-light {
+  @include typography-mixins.font($font-weight: light);
+}
+
+.u-text-weight-medium {
+  @include typography-mixins.font($font-weight: medium);
+}
+
+.u-text-weight-bold {
+  @include typography-mixins.font($font-weight: bold);
+}
+
+// Family
+.u-text-family-serif {
+  @include typography-mixins.font-family-serif();
+}
+
+.u-text-family-sans-serif {
+  @include typography-mixins.font-family-sans-serif();
+}

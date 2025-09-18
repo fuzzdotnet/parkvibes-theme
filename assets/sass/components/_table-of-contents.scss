@@ -1,0 +1,60 @@
+// ------------------------------------
+// Components > Table of Contents
+// ------------------------------------
+
+@use '../mixins/typography';
+@use '../mixins/interaction';
+
+// Dynamic scroll padding for ToC links
+html {
+  scroll-padding-top: var(--toc-scroll-offset, 0px);
+}
+
+// Modal context needs explicit smooth scrolling (doesn't inherit from html)
+.c-modal-post__content {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--toc-scroll-offset, 0px);
+}
+
+.c-table-of-contents {
+  border-radius: var(--border-radius-default);
+  background-color: color-mix(in srgb, var(--color-site-text) 3%, var(--color-site-background));
+  border: var(--border-width-default) solid var(--color-site-border);
+  overflow: hidden; // Ensure border-radius is respected
+
+  &__heading {
+    @include typography.font($font-family: sans-serif, $font-size: 150, $font-weight: medium);
+    font-family: var(--gh-font-heading, var(--font-family-sans-serif));
+    padding: var(--space-300);
+    margin: 0;
+    background-color: color-mix(in srgb, var(--color-site-text) 8%, var(--color-site-background));
+    border-bottom: var(--border-width-default) solid var(--color-site-border);
+    color: var(--color-site-text);
+  }
+
+  &__content {
+    padding: var(--space-300);
+  }
+
+  &__list {
+    padding-left: 0;
+
+    &:first-child > .c-table-of-contents__list-item:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__list-item {
+    margin-top: var(--space-100);
+
+    &::marker {
+      color: var(--color-site-text);
+    }
+  }
+
+  &__list-link {
+    @include interaction.link-underline();
+    
+    color: var(--color-site-text);
+  }
+}

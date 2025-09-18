@@ -1,0 +1,206 @@
+// ------------------------------------
+// Mixins > Typography
+// ------------------------------------
+
+@use 'links';
+@use 'sass:math';
+
+$base-font-size: 16px;
+
+@function px-to-rem($value) {
+  @return math.div($value, $base-font-size) * 1rem;
+}
+
+@function unitless-line-height($line-height, $font-size) {
+  @return math.div($line-height, $font-size);
+}
+
+@mixin font(
+  $font-family: null,
+  $font-size: null,
+  $line-height: null,
+  $font-weight: null,
+  $font-style: null,
+  $font-stretch: null,
+  $uppercase: null,
+  $letter-spacing: null,
+  $text-wrap: null,
+  $text-align: null
+) {
+  @if $font-family {
+    font-family: var(--font-family-#{$font-family});
+  }
+
+  @if $font-size {
+    font-size: var(--font-size-#{$font-size});
+  }
+
+  @if $line-height {
+    line-height: var(--line-height-#{$line-height});
+  } @else if $font-size {
+    line-height: var(--line-height-#{$font-size});
+  }
+
+  @if $font-weight {
+    font-weight: var(--font-weight-#{$font-weight});
+  }
+
+  @if $font-style {
+    font-style: #{$font-style};
+  }
+
+  @if $font-stretch {
+    font-stretch: #{$font-stretch};
+  }
+
+  @if $uppercase {
+    text-transform: uppercase;
+  }
+
+  @if $letter-spacing {
+    letter-spacing: var(--letter-spacing-#{$letter-spacing});
+  }
+
+  @if $text-wrap {
+    text-wrap: #{$text-wrap};
+  }
+
+  @if $text-align {
+    text-align: #{$text-align};
+  }
+}
+
+@mixin responsive-font-size($min-size, $viewport-size: 5vw, $max-size) {
+  font-size: clamp(#{$min-size}, calc(#{$viewport-size} + 1rem), #{$max-size});
+}
+
+@mixin font-excerpt() {
+  @include responsive-font-size-175();
+  @include font($text-wrap: balance);
+}
+
+@mixin font-family-serif() {
+  @include font($font-family: serif);
+}
+
+@mixin font-family-sans-serif() {
+  @include font($font-family: sans-serif);
+}
+
+@mixin caption() {
+  width: 100%;
+  text-align: center;
+  padding-top: var(--space-100);
+  
+  @include font($font-size: '100', $text-wrap: pretty);
+  font-family: var(--gh-font-body, var(--font-family-sans-serif));
+
+  a {
+    @include links.link-underline();
+  }
+}
+
+@mixin responsive-font-size-125() { // 16px to 20px
+  --min-size: var(--font-size-100);
+  --max-size: var(--font-size-125);
+  --viewport-width: 2.5vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-125);
+  font-weight: var(--font-weight-medium);
+}
+
+@mixin responsive-font-size-150() { // 24px
+  --min-size: var(--font-size-125);
+  --max-size: var(--font-size-150);
+  --viewport-width: 2.5vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-150);
+}
+
+@mixin responsive-font-size-175() { // 28px
+  --min-size: var(--font-size-150);
+  --max-size: var(--font-size-175);
+  --viewport-width: 2.5vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-175);
+}
+
+@mixin responsive-font-size-200() { // 32px
+  --min-size: var(--font-size-150);
+  --max-size: var(--font-size-200);
+  --viewport-width: 3vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-200);
+}
+
+@mixin responsive-font-size-250() { // 40px
+  --min-size: var(--font-size-150);
+  --max-size: var(--font-size-250);
+  --viewport-width: 4vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-250);
+}
+
+@mixin responsive-font-size-300() { // 48px
+  --min-size: var(--font-size-200);
+  --max-size: var(--font-size-300);
+  --viewport-width: 4.5vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-300);
+}
+
+@mixin responsive-font-size-350() { // 56px
+  --min-size: var(--font-size-200);
+  --max-size: var(--font-size-350);
+  --viewport-width: 4.5vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-350);
+}
+
+@mixin responsive-font-size-400() { // 64px
+  --min-size: var(--font-size-250);
+  --max-size: var(--font-size-400);
+  --viewport-width: 4.5vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-200);
+}
+
+@mixin responsive-font-size-450() { // 72px
+  --min-size: var(--font-size-200);
+  --max-size: var(--font-size-450);
+  --viewport-width: 5vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-450);
+}
+
+@mixin responsive-font-size-600() { // 96px
+  --min-size: var(--font-size-200);
+  --max-size: var(--font-size-600);
+  --viewport-width: 6vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-200);
+}
+
+@mixin responsive-font-size-1000() { // 128px
+  --min-size: var(--font-size-600);
+  --max-size: var(--font-size-1000);
+  --viewport-width: 4vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-1000);
+}
+
+@mixin responsive-font-size-1100() { // 144px
+  --min-size: var(--font-size-200);
+  --max-size: var(--font-size-1100);
+  --viewport-width: 8vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-1100);
+}
+
+@mixin responsive-font-size-1200() { // 192px
+  --min-size: var(--font-size-200);
+  --max-size: var(--font-size-1200);
+  --viewport-width: 10vw;
+  @include responsive-font-size(var(--min-size), var(--viewport-width), var(--max-size));
+  line-height: var(--line-height-1200);
+}

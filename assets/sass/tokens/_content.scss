@@ -1,0 +1,9 @@
+// ------------------------------------
+// Tokens > Content
+// ------------------------------------
+
+:root {
+  --line-length: min(100%, 52ch);
+  --text-indent: var(--space-600);
+  --content-flow: var(--space-400);
+}

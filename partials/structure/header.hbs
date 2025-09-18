@@ -1,0 +1,75 @@
+<header class="c-header {{#is 'home'}} c-header--home{{/is}}{{#if @custom.enable_sticky_header}} c-header--sticky{{/if}}">
+  <a href="#main" class="c-skip">{{t "Skip to content" }}</a>
+
+  <div class="o-grid">
+    <div class="c-header__inner">
+      <div class="c-logo">
+        {{#if @site.logo}}
+          <a href="{{ @site.url }}" class="u-block">
+            <img class="c-logo__img" src="{{ @site.logo }}" alt="{{ @site.title }}" width="" height="">
+          </a>
+        {{else}}
+          <a class="c-logo__link" href="{{ @site.url }}">{{ @site.title }}</a>
+        {{/if}}
+      </div>
+
+      <div class="c-menu-wrap">
+        <!-- New Menu Toggle Button -->
+        <button type="button" class="c-menu-toggle" id="menuToggle" aria-label="Toggle menu"
+                aria-controls="headerMenu" aria-expanded="false" aria-haspopup="true">
+          <span class="c-menu-toggle__icon">
+            <span></span>
+            <span></span>
+          </span>
+          <span class="c-menu-toggle__label">{{t "Menu"}}</span>
+        </button>
+
+        {{ search }}
+      </div>
+    </div>
+    
+    <!-- Header Menu Dropdown -->
+    <div class="c-header-menu" id="headerMenu" role="dialog" aria-modal="true" aria-label="Main Menu" aria-hidden="true" tabindex="-1">
+      <div class="c-header-menu__content">
+        <!-- Navigation Section -->
+        <div class="c-header-menu__section">
+          <nav class="c-header-menu__nav" aria-label="Main navigation">
+            <ul class="u-plain-list">
+              {{ navigation }}
+
+              {{#if @site.members_enabled}}
+                {{#if @member}}
+                  <li><a href="#/portal/account" class="nav-portal-link account u-font-style-italic">{{t "Account" }}</a></li>
+                {{else}}
+                  <li><a href="#/portal/signin" class="nav-portal-link signin u-font-style-italic">{{t "Sign in" }}</a></li>
+                {{#unless @site.members_invite_only}}
+                  <li><a href="#/portal/signup" class="nav-portal-link signup u-font-style-italic">{{t "Subscribe" }}</a></li>
+                {{/unless}}
+                {{/if}}
+              {{/if}}
+            </ul>
+          </nav>
+        </div>
+
+        {{!-- Header Tags Section --}}
+        {{^match @custom.header_tags "Hide Tags"}}
+          {{#match @custom.header_tags "Specific Tags"}}
+            {{#if @custom.header_tag_slugs}}
+              {{#get "tags" filter="slug:[{{@custom.header_tag_slugs}}]" include="count.posts" as |tags|}}
+                {{#if tags}}
+                  {{> components/header-tags}}
+                {{/if}}
+              {{/get}}
+            {{/if}}
+          {{else}}
+            {{#get "tags" limit="50" include="count.posts" as |tags|}}
+              {{#if tags}}
+                {{> components/header-tags}}
+              {{/if}}
+            {{/get}}
+          {{/match}}
+        {{/match}}
+      </div>
+    </div>
+  </div>
+</header>

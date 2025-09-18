@@ -1,0 +1,58 @@
+{{!-- Blocks > Featured Posts --}}
+
+{{#match @custom.featured_posts "Show 3 posts (Default)"}}
+  {{#get "posts" filter="featured:true" include="tags" limit="3"}}
+    {{#if posts}}
+      <section class="c-block c-block--featured-posts
+        {{> utilities/general }} {{ post_class }}"
+        {{> utilities/inline-block }}>
+
+        {{> blocks/block-heading staticTitle=(t "Featured Posts") size="small"}}
+
+        <div class="o-grid o-grid--3-columns c-featured-posts-grid">
+          {{#foreach posts}}
+            {{> components/card-post modifierClass="c-card-post--featured" }}
+          {{/foreach}}
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+{{/match}}
+
+{{#match @custom.featured_posts "Show 6 posts"}}
+  {{#get "posts" filter="featured:true" include="tags" limit="6"}}
+    {{#if posts}}
+      <section class="c-block c-block--featured-posts
+        {{> utilities/general }} {{ post_class }}"
+        {{> utilities/inline-block }}>
+
+        {{> blocks/block-heading staticTitle=(t "Featured Posts") size="small"}}
+
+        <div class="o-grid o-grid--3-columns c-featured-posts-grid">
+          {{#foreach posts}}
+            {{> components/card-post modifierClass="c-card-post--featured" }}
+          {{/foreach}}
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+{{/match}}
+
+{{#match @custom.featured_posts "Show 9 posts"}}
+  {{#get "posts" filter="featured:true" include="tags" limit="9"}}
+    {{#if posts}}
+      <section class="c-block c-block--featured-posts
+        {{> utilities/general }} {{ post_class }}"
+        {{> utilities/inline-block }}>
+
+        {{> blocks/block-heading staticTitle=(t "Featured Posts") size="small"}}
+
+        <div class="o-grid o-grid--3-columns c-featured-posts-grid">
+          {{#foreach posts}}
+            {{> components/card-post modifierClass="c-card-post--featured" }}
+          {{/foreach}}
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+{{/match}}

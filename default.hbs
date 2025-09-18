@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{ @site.locale }}">
+
+  {{> structure/head }}
+
+  <body class="{{ body_class }}
+    {{#if @member}} is-member{{#if @member.paid}} is-paid-member{{/if}}{{else}} is-visitor{{/if}}
+    {{#if @custom.enable_sticky_header}} enabled-sticky-header{{/if}}"
+    data-color-scheme="{{#if @custom.site_color_scheme}}{{@custom.site_color_scheme}}{{else}}Marsa Classic (Default){{/if}}">
+
+    {{> structure/header }}
+
+    <main id="main">
+      {{{ body }}}
+    </main>
+
+    {{> structure/footer }}
+    
+    {{> components/modal-post}}
+    
+    {{ ghost_foot }}
+    
+    <script src="{{ asset 'build/marsa.min.js' }}"></script>
+  </body>
+</html>

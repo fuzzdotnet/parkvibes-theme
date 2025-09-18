@@ -1,0 +1,33 @@
+// ------------------------------------
+// Blocks > Exclusive Posts
+// ------------------------------------
+
+@use '../mixins/mq';
+
+.c-exclusive-posts-rolodex {
+  position: relative;
+}
+
+.c-exclusive-posts-rolodex__item {
+  position: sticky;
+  top: var(--space-400);
+
+  .enabled-sticky-header & {
+    top: var(--space-800);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: var(--space-200);
+
+    @include mq.mq($from: desktop) {
+      margin-bottom: var(--space-400);
+    }
+  }
+  
+  // Each subsequent card has a higher z-index (up to 50 items)
+  @for $i from 1 through 50 {
+    &:nth-child(#{$i}) {
+      z-index: #{$i};
+    }
+  }
+}

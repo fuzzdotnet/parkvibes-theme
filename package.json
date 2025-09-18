@@ -1,0 +1,276 @@
+{
+  "name": "marsa",
+  "description": "Premium Ghost Theme",
+  "version": "1.0.1",
+  "keywords": [
+    "ghost-theme"
+  ],
+  "demo": "https://marsa.aspirethemes.com/",
+  "docs": "https://aspirethemes.notion.site/Marsa-Documentation-1ceb78f638d881548229d214f6ff5aba",
+  "type": "module",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "scripts": {
+    "test:translations": "node tools/translations.js"
+  },
+  "dependencies": {
+    "gsap": "^3.13.0",
+    "modern-normalize": "^3.0.1",
+    "sass-mq": "^7.0.0",
+    "tocbot": "^4.36.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.1.0",
+    "eslint": "^9.33.0",
+    "gulp": "^5.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint-new": "^2.4.0",
+    "gulp-postcss": "^10.0.0",
+    "gulp-rename": "^2.1.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-terser": "^2.1.0",
+    "gulp-zip": "^6.1.0",
+    "postcss": "^8.5.6",
+    "sass": "^1.90.0"
+  },
+  "author": {
+    "name": "Aspire Themes",
+    "email": "ahmad@aspirethemes.com",
+    "url": "https://aspirethemes.com/"
+  },
+  "config": {
+    "custom": {
+      "site_color_scheme": {
+        "type": "select",
+        "options": [
+          "Custom",
+          "Marsa Classic (Default)",
+          "Lavender Crimson",
+          "Cosmic Purple",
+          "Blush Elegance",
+          "Rose Burgundy",
+          "Coral Red",
+          "Swiss Vibrant",
+          "Vibrant Orange",
+          "Terracotta Dream",
+          "Autumn Spice",
+          "Swiss Golden",
+          "Bricolage Inspired",
+          "Professional Blue",
+          "Ocean Mist",
+          "Teal Breeze",
+          "Deep Forest",
+          "Sage Wisdom",
+          "Neon Forest",
+          "Botanical Bloom",
+          "Desert Sage",
+          "Nordic Frost",
+          "Charcoal Rose",
+          "Midnight Luxury"
+        ],
+        "default": "Marsa Classic (Default)",
+        "description": "Pre-designed color palettes for your entire site"
+      },
+      "site_color_background": {
+        "type": "color",
+        "default": "#FDFCFF",
+        "description": "Site background color (requires 'Custom' color scheme)",
+        "visibility": "site_color_scheme:Custom"
+      },
+      "site_color_text": {
+        "type": "color",
+        "default": "#2D1B3D",
+        "description": "Site text color (requires 'Custom' color scheme)",
+        "visibility": "site_color_scheme:Custom"
+      },
+      "header_banner_color_background": {
+        "type": "color",
+        "default": "#4C1D95",
+        "description": "Background color for header and homepage banner (requires 'Custom' color scheme)",
+        "visibility": "site_color_scheme:Custom"
+      },
+      "header_banner_color_text": {
+        "type": "color",
+        "default": "#FFFFFF",
+        "description": "Text color for header and homepage banner (requires 'Custom' color scheme)",
+        "visibility": "site_color_scheme:Custom"
+      },
+      "enable_post_modal_view": {
+        "type": "boolean",
+        "default": true,
+        "description": "Open posts in a modal instead of navigating to a new page"
+      },
+      "enable_sticky_header": {
+        "type": "boolean",
+        "default": true,
+        "description": "Keep header visible when scrolling down the page"
+      },
+      "header_tags": {
+        "type": "select",
+        "options": [
+          "All Tags (Default)",
+          "Specific Tags",
+          "Hide Tags"
+        ],
+        "default": "All Tags (Default)",
+        "description": "Choose which tags to display in header menu dropdown"
+      },
+      "header_tag_slugs": {
+        "type": "text",
+        "default": "",
+        "description": "Comma-separated tag slugs for header menu (e.g., fitness,health,technology)",
+        "visibility": "header_tags:'Specific Tags'"
+      },
+      "instagram_url": {
+        "type": "text",
+        "default": "",
+        "description": "Your Instagram profile URL"
+      },
+      "youtube_url": {
+        "type": "text",
+        "default": "",
+        "description": "Your YouTube channel URL"
+      },
+      "banner_text_size": {
+        "type": "select",
+        "options": [
+          "Extra Large",
+          "Large (Default)",
+          "Medium",
+          "Small"
+        ],
+        "default": "Large (Default)",
+        "description": "Font size for homepage banner text",
+        "group": "homepage"
+      },
+      "banner_text_layout": {
+        "type": "select",
+        "options": [
+          "Stacked (Default)",
+          "Inline"
+        ],
+        "default": "Stacked (Default)",
+        "description": "Layout style for homepage banner: inline (side-by-side) or stacked (vertical)",
+        "group": "homepage"
+      },
+      "banner_text_alignment": {
+        "type": "select",
+        "options": [
+          "Left (Default)",
+          "Center"
+        ],
+        "default": "Left (Default)",
+        "description": "Text alignment for homepage banner",
+        "group": "homepage"
+      },
+      "featured_posts": {
+        "type": "select",
+        "options": [
+          "Show 3 posts (Default)",
+          "Show 6 posts",
+          "Show 9 posts",
+          "Hide section"
+        ],
+        "default": "Show 3 posts (Default)",
+        "description": "Number of featured posts to display on homepage",
+        "group": "homepage"
+      },
+      "tag_sections": {
+        "type": "select",
+        "options": [
+          "All Tags (Default)",
+          "Specific Tags",
+          "Hide section"
+        ],
+        "default": "All Tags (Default)",
+        "description": "Display tag-based posts sections on homepage",
+        "group": "homepage"
+      },
+      "tag_sections_slugs": {
+        "type": "text",
+        "default": "",
+        "description": "Comma-separated tag slugs to display as homepage sections (e.g., fitness,health,technology)",
+        "group": "homepage",
+        "visibility": "tag_sections:'Specific Tags'"
+      },
+      "latest_posts": {
+        "type": "select",
+        "options": [
+          "Show 6 posts (Default)",
+          "Show 6 posts (exclude featured)",
+          "Show 9 posts",
+          "Show 9 posts (exclude featured)",
+          "Hide section"
+        ],
+        "default": "Show 6 posts (Default)",
+        "description": "Number of latest posts to display (with or without featured posts)",
+        "group": "homepage"
+      },
+      "exclusive_posts": {
+        "type": "select",
+        "options": [
+          "Members only (Default)",
+          "Paid-members only",
+          "Specific tier(s)",
+          "All (members + paid + tiers)",
+          "Hide section"
+        ],
+        "default": "Members only (Default)",
+        "description": "Display posts based on membership access level",
+        "group": "homepage"
+      },
+      "enable_newsletters": {
+        "type": "boolean",
+        "default": true,
+        "description": "Display newsletter subscription section on homepage",
+        "group": "homepage"
+      }
+    },
+    "card_assets": {
+      "exclude": [
+        "button",
+        "blockquote",
+        "bookmark",
+        "header",
+        "image",
+        "signup",
+        "gallery"
+      ]
+    },
+    "posts_per_page": 15,
+    "image_sizes": {
+      "profile-image-small": {
+        "width": 288
+      },
+      "profile-image-large": {
+        "width": 576
+      },
+      "tag-image-small": {
+        "width": 192
+      },
+      "tag-image-medium": {
+        "width": 1000
+      },
+      "tag-image-large": {
+        "width": 1400
+      },
+      "tag-image-xl": {
+        "width": 2000
+      },
+      "feature-image-xs": {
+        "width": 400
+      },
+      "feature-image-small": {
+        "width": 600
+      },
+      "feature-image-medium": {
+        "width": 1200
+      },
+      "feature-image-large": {
+        "width": 1800
+      }
+    }
+  }
+}

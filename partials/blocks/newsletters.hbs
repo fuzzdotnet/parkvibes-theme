@@ -1,0 +1,102 @@
+{{!-- Blocks > Newsletters --}}
+
+{{#if @site.members_enabled}}
+<section class="c-block c-block--newsletters
+  {{> utilities/general }} {{ post_class }}"
+  {{> utilities/inline-block }}
+  {{> utilities/id }}>
+
+  {{> blocks/block-heading staticTitle=(t "Newsletters") size="small"}}
+
+  <div class="o-grid">
+    <form data-members-form="subscribe" class="c-newsletters" novalidate>
+      
+      {{#get "newsletters"}}
+        {{#if newsletters}}
+          {{#unless @member}}
+          <div class="c-newsletters__header">
+            <button type="button" class="c-newsletters__select-all c-btn c-btn--neutral c-btn--outline c-btn--small c-btn--icon c-btn--icon-leading" aria-describedby="newsletter-select-all-help">
+              {{> icons/plus}}
+              <span class="c-newsletters__select-all-text c-btn__label">{{t "SELECT ALL"}}</span>
+            </button>
+            <div id="newsletter-select-all-help" class="u-screenreader">{{t "Toggle selection for all newsletters"}}</div>
+          </div>
+          
+          <fieldset class="c-newsletters__fieldset">
+            <legend class="u-screenreader">{{t "Newsletter Selection"}}</legend>
+            <div class="c-newsletters__cards o-grid o-grid--3-columns" role="group"> 
+              {{#foreach newsletters}}
+                <div class="c-newsletters__card">
+                  <input 
+                    value="{{ name }}" 
+                    id="newsletter-{{ slug }}" 
+                    type="checkbox" 
+                    class="c-newsletters__card-input" 
+                    data-members-newsletter
+                    aria-describedby="newsletter-desc-{{ slug }}">
+                  <label for="newsletter-{{ slug }}" class="c-newsletters__card-label">
+                    <span class="c-newsletters__card-checkbox" aria-hidden="true"></span>
+                    <span class="c-newsletters__card-content">
+                      <span class="c-newsletters__card-title">{{ name }}</span>
+                      <span class="c-newsletters__card-description" id="newsletter-desc-{{ slug }}">{{ description }}</span>
+                    </span>
+                  </label>
+                </div>
+              {{/foreach}}
+            </div>
+          </fieldset>
+
+          <div class="c-newsletters__form">
+            <div class="c-newsletters__form-group">
+              <label for="newsletter-email" class="c-newsletters__form-label u-screenreader">{{t "Email address" }}</label>
+              <div class="c-newsletters__form-input-wrapper">
+                <input 
+                  type="email" 
+                  name="email" 
+                  class="c-newsletters__form-input" 
+                  id="newsletter-email" 
+                  placeholder="{{t 'Email address' }}" 
+                  data-members-email 
+                  required 
+                  autocomplete="email">
+                <button type="submit" class="js-contrast c-btn c-newsletters__form-btn" style="--color-accent: var(--color-site-accent);">{{t "Subscribe" }}</button>
+              </div>
+              <div id="newsletter-submit-help" class="u-screenreader">{{t "Subscribe to selected newsletters"}}</div>
+            </div>
+          </div>
+
+          {{!-- Subscription status messages --}}
+          <div class="c-newsletters__alert c-newsletters__alert--success u-hidden" data-members-success role="status" aria-live="polite">
+            {{t "Please check your inbox and click the link to confirm your subscription." }}
+          </div>
+          <div class="c-newsletters__alert c-newsletters__alert--error u-hidden" data-members-error role="alert" aria-live="assertive">
+            {{t "An error occurred, please try again later." }}
+          </div>
+          {{else}}
+          {{!-- Simplified view for logged-in members --}}
+          <div class="c-newsletters__member-section">
+            <div class="c-newsletters__member-info">
+              <h3 class="c-newsletters__member-title">{{t "Manage Your Newsletter Subscriptions"}}</h3>
+              <p class="c-newsletters__member-text">
+                {{t "Signed in as"}} <strong>{{@member.email}}</strong>
+              </p>
+              <p class="c-newsletters__member-description">
+                {{t "Click below to view all available newsletters and manage your subscription preferences."}}
+              </p>
+              <a href="#/portal/account/newsletters" class="js-contrast c-btn c-newsletters__member-btn" data-portal="account/newsletters" style="--color-accent: var(--color-site-accent);">
+                {{t "Newsletter Preferences"}}
+              </a>
+            </div>
+          </div>
+          {{/unless}}
+          
+        {{else}}
+          <div class="c-newsletters__empty">
+            <p>{{t "No newsletters are currently available for subscription."}}</p>
+          </div>
+        {{/if}}
+      {{/get}}
+    </form>
+  </div>
+</section>
+{{/if}}
