@@ -5,60 +5,146 @@
 // Gelica Font Family - Sans-serif
 // Brand font replacing Bricolage Grotesque
 // Weights: 200 (extralight) to 900 (black)
+// Styles: normal and italic
+// Formats: WOFF2 (primary) and WOFF (fallback)
 
+// ExtraLight - Normal
 @font-face {
   font-family: 'Gelica';
-  src: url('../fonts/gelica-extralight.otf') format('opentype');
+  src: url('../fonts/Gelica-ExtraLight.woff2') format('woff2'),
+       url('../fonts/Gelica-ExtraLight.woff') format('woff');
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 
+// ExtraLight - Italic
 @font-face {
   font-family: 'Gelica';
-  src: url('../fonts/gelica-light.otf') format('opentype');
+  src: url('../fonts/Gelica-ExtraLightItalic.woff2') format('woff2'),
+       url('../fonts/Gelica-ExtraLightItalic.woff') format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+// Light - Normal
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/Gelica-Light.woff2') format('woff2'),
+       url('../fonts/Gelica-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
+// Light - Italic
 @font-face {
   font-family: 'Gelica';
-  src: url('../fonts/gelica-regular.otf') format('opentype');
+  src: url('../fonts/Gelica-LightItalic.woff2') format('woff2'),
+       url('../fonts/Gelica-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+// Regular - Normal
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/Gelica-Regular.woff2') format('woff2'),
+       url('../fonts/Gelica-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
+// Regular - Italic
 @font-face {
   font-family: 'Gelica';
-  src: url('../fonts/gelica-medium.otf') format('opentype');
+  src: url('../fonts/Gelica-RegularItalic.woff2') format('woff2'),
+       url('../fonts/Gelica-RegularItalic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+// Medium - Normal
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/Gelica-Medium.woff2') format('woff2'),
+       url('../fonts/Gelica-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
+// Medium - Italic
 @font-face {
   font-family: 'Gelica';
-  src: url('../fonts/gelica-semibold.otf') format('opentype');
+  src: url('../fonts/Gelica-MediumItalic.woff2') format('woff2'),
+       url('../fonts/Gelica-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+// SemiBold - Normal
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/Gelica-SemiBold.woff2') format('woff2'),
+       url('../fonts/Gelica-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
+// SemiBold - Italic
 @font-face {
   font-family: 'Gelica';
-  src: url('../fonts/gelica-bold.otf') format('opentype');
+  src: url('../fonts/Gelica-SemiBoldItalic.woff2') format('woff2'),
+       url('../fonts/Gelica-SemiBoldItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+// Bold - Normal
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/Gelica-Bold.woff2') format('woff2'),
+       url('../fonts/Gelica-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
+// Bold - Italic
 @font-face {
   font-family: 'Gelica';
-  src: url('../fonts/gelica-black.otf') format('opentype');
+  src: url('../fonts/Gelica-BoldItalic.woff2') format('woff2'),
+       url('../fonts/Gelica-BoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+// Black - Normal
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/Gelica-Black.woff2') format('woff2'),
+       url('../fonts/Gelica-Black.woff') format('woff');
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
+}
+
+// Black - Italic
+@font-face {
+  font-family: 'Gelica';
+  src: url('../fonts/Gelica-BlackItalic.woff2') format('woff2'),
+       url('../fonts/Gelica-BlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
   font-display: swap;
 }
 
