@@ -16,9 +16,15 @@
     {{#get "pages" filter="slug:archive" limit="1" as |archivePage|}}
       {{#if archivePage}}
         <h1 class="u-font-heading">{{ archivePage.[0].title }}</h1>
-        {{#if archivePage.[0].custom_excerpt}}
-          <p class="u-font-subHeading">{{ archivePage.[0].custom_excerpt }}</p>
-        {{/if}}
+        {{#with archivePage.[0]}}
+          {{#has tag="video"}}
+            {{!-- Video post - hide excerpt --}}
+          {{else}}
+            {{#if custom_excerpt}}
+              <p class="u-font-subHeading">{{ custom_excerpt }}</p>
+            {{/if}}
+          {{/has}}
+        {{/with}}
       {{else}}
         <h1 class="u-font-heading">{{t "Archive"}}</h1>
       {{/if}}

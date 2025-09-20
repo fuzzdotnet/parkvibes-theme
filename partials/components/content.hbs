@@ -34,9 +34,13 @@
       <section class="c-post__header">
         <h1 class="c-post__headline">{{ title }}</h1>
 
-        {{#if custom_excerpt}}
-          <p class="c-post__standfirst">{{{ custom_excerpt }}}</p>
-        {{/if}}
+        {{#has tag="video"}}
+          {{!-- Video post - hide excerpt --}}
+        {{else}}
+          {{#if custom_excerpt}}
+            <p class="c-post__standfirst">{{{ custom_excerpt }}}</p>
+          {{/if}}
+        {{/has}}
         
         {{#is "post"}}
           {{> meta/byline }}
@@ -48,7 +52,7 @@
       </section>
 
       {{!-- Feature Video or Image Section --}}
-      {{#has tag="#video"}}
+      {{#has tag="video"}}
         {{#if custom_excerpt}}
           {{!-- Video post with YouTube ID in excerpt - show video --}}
           <figure class="c-post__feature-image-figure">

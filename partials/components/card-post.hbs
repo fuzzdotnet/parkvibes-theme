@@ -29,11 +29,15 @@
         <a href="{{ url }}" class="c-card-post__link" aria-label="Read article: {{ title }}">{{ title }}</a>
       </h3>
 
-      {{#if custom_excerpt}}
-        <div class="c-card-post__excerpt">
-          <p>{{{ custom_excerpt }}}</p>
-        </div>
-      {{/if}}
+      {{#has tag="video"}}
+        {{!-- Video post - hide excerpt --}}
+      {{else}}
+        {{#if custom_excerpt}}
+          <div class="c-card-post__excerpt">
+            <p>{{{ custom_excerpt }}}</p>
+          </div>
+        {{/if}}
+      {{/has}}
     
       <div class="c-card-post__tags">
         {{#if tags}}

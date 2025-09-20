@@ -20,7 +20,11 @@
         <div class="c-block--banner__content">
           {{ content }}
         </div>
-        <p class="c-block--banner__excerpt u-hidden">{{ excerpt }}</p>
+        {{#has tag="video"}}
+          {{!-- Video post - hide excerpt --}}
+        {{else}}
+          <p class="c-block--banner__excerpt u-hidden">{{ excerpt }}</p>
+        {{/has}}
       </div>
     </section>
   {{/foreach}}

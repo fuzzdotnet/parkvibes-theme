@@ -8,9 +8,13 @@
     {{else}}
       {{!-- Dynamic heading from content (testimonials, galleries, etc.) --}}
       <h2 class="c-block__headline-title">{{ title }}</h2>
-      {{#if custom_excerpt}}
-        <p class="c-block__headline-excerpt">{{ custom_excerpt }}</p>
-      {{/if}}
+      {{#has tag="video"}}
+        {{!-- Video post - hide excerpt --}}
+      {{else}}
+        {{#if custom_excerpt}}
+          <p class="c-block__headline-excerpt">{{ custom_excerpt }}</p>
+        {{/if}}
+      {{/has}}
     {{/if}}
   </div>
 </div>
