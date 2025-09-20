@@ -155,7 +155,7 @@
   
   &__title {
     font-family: var(--gh-font-heading, var(--font-family-sans-serif));
-    @include typography.font($font-weight: semi-bold, $uppercase: true);
+    @include typography.font($font-weight: semi-bold);
     @include typography.responsive-font-size-150();
   }
   
