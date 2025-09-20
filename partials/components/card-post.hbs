@@ -29,7 +29,7 @@
         <a href="{{ url }}" class="c-card-post__link" aria-label="Read article: {{ title }}">{{ title }}</a>
       </h3>
 
-      {{#has tag="video"}}
+      {{#has tag="video,Video,shorts,Shorts"}}
         {{!-- Video post - hide excerpt --}}
       {{else}}
         {{#if custom_excerpt}}

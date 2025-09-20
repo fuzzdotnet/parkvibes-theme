@@ -17,7 +17,7 @@
       {{#if archivePage}}
         <h1 class="u-font-heading">{{ archivePage.[0].title }}</h1>
         {{#with archivePage.[0]}}
-          {{#has tag="video"}}
+          {{#has tag="video,Video,shorts,Shorts"}}
             {{!-- Video post - hide excerpt --}}
           {{else}}
             {{#if custom_excerpt}}
