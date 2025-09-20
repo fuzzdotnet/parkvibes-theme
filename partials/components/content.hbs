@@ -47,25 +47,67 @@
         {{/is}}
       </section>
 
-      {{!-- Feature Image Section --}}
-      {{#if feature_image}}
-        <figure class="c-post__feature-image-figure">
-          <div class="c-post__feature-image-wrapper">
-            <img class="c-post__feature-image"
-                 alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
-                 src="{{ img_url feature_image size='feature-image-large' format='webp' }}"
-                 srcset="{{ img_url feature_image size='feature-image-small' format='webp' }} 600w,
-                         {{ img_url feature_image size='feature-image-medium' format='webp' }} 1200w,
-                         {{ img_url feature_image size='feature-image-large' format='webp' }} 1800w"
-                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw"
-                 fetchpriority="high"
-            >
-          </div>
-          {{#if feature_image_caption}}
-            <figcaption class="c-post__feature-image-caption">{{ feature_image_caption }}</figcaption>
+      {{!-- Feature Video or Image Section --}}
+      {{#has tag="#video"}}
+        {{#if custom_excerpt}}
+          {{!-- Video post with YouTube ID in excerpt - show video --}}
+          <figure class="c-post__feature-image-figure">
+            <div class="c-post__feature-video-wrapper">
+              <iframe class="c-post__feature-video"
+                      src="https://www.youtube.com/embed/{{ custom_excerpt }}"
+                      title="{{ title }}"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen>
+              </iframe>
+            </div>
+            {{#if feature_image_caption}}
+              <figcaption class="c-post__feature-image-caption">{{ feature_image_caption }}</figcaption>
+            {{/if}}
+          </figure>
+        {{else}}
+          {{!-- Video tag but no excerpt - fallback to feature image --}}
+          {{#if feature_image}}
+            <figure class="c-post__feature-image-figure">
+              <div class="c-post__feature-image-wrapper">
+                <img class="c-post__feature-image"
+                     alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                     src="{{ img_url feature_image size='feature-image-large' format='webp' }}"
+                     srcset="{{ img_url feature_image size='feature-image-small' format='webp' }} 600w,
+                             {{ img_url feature_image size='feature-image-medium' format='webp' }} 1200w,
+                             {{ img_url feature_image size='feature-image-large' format='webp' }} 1800w"
+                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw"
+                     fetchpriority="high"
+                >
+              </div>
+              {{#if feature_image_caption}}
+                <figcaption class="c-post__feature-image-caption">{{ feature_image_caption }}</figcaption>
+              {{/if}}
+            </figure>
           {{/if}}
-        </figure>
-      {{/if}}
+        {{/if}}
+      {{else}}
+        {{!-- Regular post - show feature image --}}
+        {{#if feature_image}}
+          <figure class="c-post__feature-image-figure">
+            <div class="c-post__feature-image-wrapper">
+              <img class="c-post__feature-image"
+                   alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+                   src="{{ img_url feature_image size='feature-image-large' format='webp' }}"
+                   srcset="{{ img_url feature_image size='feature-image-small' format='webp' }} 600w,
+                           {{ img_url feature_image size='feature-image-medium' format='webp' }} 1200w,
+                           {{ img_url feature_image size='feature-image-large' format='webp' }} 1800w"
+                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw"
+                   fetchpriority="high"
+              >
+            </div>
+            {{#if feature_image_caption}}
+              <figcaption class="c-post__feature-image-caption">{{ feature_image_caption }}</figcaption>
+            {{/if}}
+          </figure>
+        {{/if}}
+      {{/has}}
     {{/if}}
 
     {{!-- Table of Contents Section --}}
